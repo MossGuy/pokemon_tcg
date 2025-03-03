@@ -1,0 +1,7 @@
+Stappenplan:
+
+* sellecteer alle kaarten van een set
+* sorteer deze kaarten op kaart id
+* maak een lijst van alle sets die legaal zijn in standaard toernooien
+* maak een interface die deze informatie netjes weergeeft
+
