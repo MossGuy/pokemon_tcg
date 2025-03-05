@@ -1,15 +1,31 @@
 <?php
 include "./api_key.php";
-// define("URL", "https://api.pokemontcg.io/v2/sets?" . KEY);
+
+   // referentie websites
+  //  https://api.pokemontcg.io/v2/series_list?q=series:Scarlet%20&%20Violet
+ //   https://pokemontcg.guru/sets
+
+define("SERIES", [
+    "Scarlet & Violet", "Sword & Shield", "Other", "Sun & Moon", "XY", "Black & White",
+    "HeartGold & SoulSilver", "Platinum", "POP", "Diamond & Pearl", "EX", "NP", "E-Card", "NEO", "Gym", "Base"
+]);
+
+// define("URL", "https://api.pokemontcg.io/v2/series_list?" . KEY);
 define("URL", "./test_json_bestanden/pokemon_sets.json");
+
 $response = file_get_contents(URL);
 $data = json_decode($response, true);
 
-echo '<pre>'; 
-// print_r($data['data']);
-echo '</pre>';
-
-//https://pokemontcg.guru/sets --referentie website
+// sorteer alle sets per serie in een nieuwe array
+$series_list = [];
+foreach ($data['data'] as $serie) {
+    $serieName = $serie['series'];
+    if (isset($series_list[$serieName])) {
+        array_push($series_list[$serieName], $serie);
+    } else {
+        $series_list[$serieName][] = $serie;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,22 +47,26 @@ echo '</pre>';
     </header>
 
     <main class="set_container">
+        <!-- <div class=""> -->
     <?php
+    
+    $count = 0;
+    foreach (array_reverse($series_list) as $name => $series) {
+        echo "<h2 class='set_title'>$name</h2>";
 
-    $totalItems = count($data['data']);
-    for ($i = $totalItems - 1; $i >= 0; $i--) {
-        $id = $data['data'][$i]['id'];
-        $name = $data['data'][$i]['name'];
-        $logo = $data['data'][$i]['images']['logo'];
-        $symbol = $data['data'][$i]['images']['symbol'];
-        $date = $data['data'][$i]['releaseDate'];
+        foreach (array_reverse($series) as $set) {
+            $id = $set['id'];
+            $name = $set['name'];
+            $logo = $set['images']['logo'];
+            $symbol = $set['images']['symbol'];
+            $date = $set['releaseDate'];
+            $series_json = $set['series'];
 
-        $standard_legal = isset($data['data'][$i]['legalities']['standard']) ? "<li>Standard {$data['data'][$i]['legalities']['standard']}</li>" : '';
-        $expanded_legal = isset($data['data'][$i]['legalities']['expanded']) ? "<li>Expanded {$data['data'][$i]['legalities']['expanded']}</li>" : '';
+            $standard_legal = isset($set['legalities']['standard']) ? "<li>Standard {$set['legalities']['standard']}</li>" : '';
+            $expanded_legal = isset($set['legalities']['expanded']) ? "<li>Expanded {$set['legalities']['expanded']}</li>" : '';
 
-
-        echo "
-        <a class='card' href='./kaarten.php?id=$id'>
+            echo "
+            <a class='card' href='./kaarten.php?id=$id'>
             <figure class='card_image'>
                 <img src='$logo' alt='$name'>
             </figure>
@@ -70,10 +90,11 @@ echo '</pre>';
                 </div>
             </div>
         </a>
-        " . PHP_EOL;
+            ";
+        }
     }
-
     ?>
+        <!-- </div> -->
     </main>
 </body>
 </html>
