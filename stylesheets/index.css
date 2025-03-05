@@ -43,6 +43,7 @@ header > div {
     flex-wrap: wrap;
     gap: 20px;
     padding: 0 auto;
+    margin-left: 5%;
 }
 
  /* ---- */
@@ -104,16 +105,5 @@ header > div {
     header {
         aspect-ratio: 2/1;
         background-size: cover;
-    }
-    .set_container {
-        max-width: 1152px;
-        padding: 0;
-        justify-content: center;
-        background-color: rgba(0, 0, 255, 0.2);
-    }
-}
-@media screen and (min-width: 800px) {
-    .set_container {
-        
     }
 }

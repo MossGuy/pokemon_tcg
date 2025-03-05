@@ -47,7 +47,6 @@ foreach ($data['data'] as $serie) {
     </header>
 
     <main class="set_container">
-        <!-- <div class=""> -->
     <?php
     
     $count = 0;
@@ -94,7 +93,6 @@ foreach ($data['data'] as $serie) {
         }
     }
     ?>
-        <!-- </div> -->
     </main>
 </body>
 </html>
