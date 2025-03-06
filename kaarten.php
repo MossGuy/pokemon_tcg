@@ -5,7 +5,7 @@ if (isset($_GET['id'])) {
     define("SET_ID", $_GET['id']);
 }
 
-// define("URL", "https://api.pokemontcg.io/v2/cards?q=set.id:" . SET_ID . KEY);
+// define("URL", "https://api.pokemontcg.io/v2/cards?q=set.id:" . SET_ID ."&orderBy=id&appid=" . KEY);
 define("URL", "./test_json_bestanden/pokemon_cardset.json");
 
 $response = file_get_contents(URL);
