@@ -23,6 +23,10 @@ body {
     background-color: var(--background);
 }
 
+ul {
+    width: fit-content;
+}
+
 .set_title {
     width: 100vw;
     color: var(--dark);
