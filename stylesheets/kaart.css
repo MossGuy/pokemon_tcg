@@ -31,11 +31,6 @@
     display: flex;
 }
 
-h2 {
-    font-size: 20px;
-    font-weight: 400;
-}
-
 
 .divider {
     border: 1px solid var(--dark);

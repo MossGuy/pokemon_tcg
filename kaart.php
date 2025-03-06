@@ -78,10 +78,15 @@ echo "</pre>";
 
                 <div class="divider"></div>
 
-                <section></section>
+                <section>
+                    <p class="p_heading">attacks</p>
+                    <table>
+
+                    </table>
+                </section>
 
                 <section></section>
-                
+
                 <section></section>
 
             </div>
