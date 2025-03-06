@@ -1,8 +1,8 @@
 Stappenplan:
 
+TODO: werk de 'Undefined array key' errors er uit
 
 stap 1 - uitlezen
-* sorteer de sets per series
 * filter de sets op toernooi legaliteid
 * geef de kaarten weergave een net interface (titel en filters)
 * geef de kaarten weergave een switch tussen afbeeldingen en tabel
