@@ -27,13 +27,6 @@ header > div {
     margin-top: 2%;
 }
 
-.set_title {
-    width: 100vw;
-    color: var(--dark);
-    font-size: 30px;
-    margin-top: 2rem;
-}
-
  /* ------- */
 /* Content */
 .set_container {
