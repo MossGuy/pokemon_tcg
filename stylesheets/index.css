@@ -27,13 +27,6 @@ header > div {
     margin-top: 2%;
 }
 
-.set_title {
-    width: 100vw;
-    color: var(--dark);
-    font-size: 30px;
-    margin-top: 2rem;
-}
-
  /* ------- */
 /* Content */
 .set_container {
@@ -42,8 +35,7 @@ header > div {
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 0 auto;
-    margin-left: 5%;
+    margin: 0 1rem;
 }
 
  /* ---- */
@@ -105,5 +97,9 @@ header > div {
     header {
         aspect-ratio: 2/1;
         background-size: cover;
+    }
+    .set_container {
+        justify-content: center;
+        text-align: center;
     }
 }

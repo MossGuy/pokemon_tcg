@@ -43,25 +43,16 @@ echo '</pre>';
     <title>Pokémon tcg api</title>
 </head>
 <body>
-    <header>
-        <h1><?=SET_ID?></h1>
-    </header>
-    <main>
+    <main class="container">
         <section class="card_container">
+            <h1 class="set_title"><?=SET_ID?></h1>
             <?php
             for ($i = 0; $i < $totalCount; $i++) {
-                // echo "
-                // <tr>
-                //     <td>{$data['data'][$i]['id']}</td>
-                //     <td>{$data['data'][$i]['name']}</td>
-                // </tr>
-                // ";
-                
                 $name = $data['data'][$i]['name'];
                 $image = $data['data'][$i]['images']['small'];
 
                 echo "
-                <a href='./kaart.php'>
+                <a class='kaart' href='./kaart.php'>
                     <img src='$image' alt='$name'>
                 </a>
                 " . PHP_EOL;

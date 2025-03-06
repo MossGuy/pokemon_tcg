@@ -23,18 +23,21 @@ body {
     background-color: var(--background);
 }
 
-
-ul{
-    width: fit-content;
+.set_title {
+    width: 100vw;
+    color: var(--dark);
+    font-size: 30px;
+    margin-top: 2rem;
 }
 
 .container {
     margin: 0 auto;
 }
 
+
 @media screen and (min-width: 1216px) {
     .container {
-        max-width: 1152px;
+        max-width: 1300px;
         /* background-color: #D94B4B; */
     }
 }
