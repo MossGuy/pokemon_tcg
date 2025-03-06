@@ -42,8 +42,7 @@ header > div {
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 0 auto;
-    margin-left: 5%;
+    margin: 0 2rem;
 }
 
  /* ---- */
@@ -105,5 +104,9 @@ header > div {
     header {
         aspect-ratio: 2/1;
         background-size: cover;
+    }
+    .set_container {
+        justify-content: center;
+        text-align: center;
     }
 }
