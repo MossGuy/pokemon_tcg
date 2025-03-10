@@ -2,7 +2,7 @@
 include "./api_key.php";
 
    // referentie websites
-  //  https://api.pokemontcg.io/v2/series_list?q=series:Scarlet%20&%20Violet
+  //  https://api.pokemontcg.io/v2/sets?q=series:Scarlet%20&%20Violet
  //   https://pokemontcg.guru/sets
 
 define("SERIES", [
@@ -10,7 +10,7 @@ define("SERIES", [
     "HeartGold & SoulSilver", "Platinum", "POP", "Diamond & Pearl", "EX", "NP", "E-Card", "NEO", "Gym", "Base"
 ]);
 
-// define("URL", "https://api.pokemontcg.io/v2/series_list?" . KEY);
+// define("URL", "https://api.pokemontcg.io/v2/sets?" . KEY);
 define("URL", "./test_json_bestanden/pokemon_sets.json");
 
 $response = file_get_contents(URL);

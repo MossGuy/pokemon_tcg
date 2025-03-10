@@ -48,11 +48,12 @@ echo '</pre>';
             <h1 class="set_title"><?=SET_ID?></h1>
             <?php
             for ($i = 0; $i < $totalCount; $i++) {
+                $id = $data['data'][$i]['id'];
                 $name = $data['data'][$i]['name'];
                 $image = $data['data'][$i]['images']['small'];
 
                 echo "
-                <a class='kaart' href='./kaart.php'>
+                <a class='kaart' href='./kaart.php?id=$id'>
                     <img src='$image' alt='$name'>
                 </a>
                 " . PHP_EOL;
