@@ -7,6 +7,7 @@ stap 1 - uitlezen
 * geef de kaarten weergave een net interface (titel en filters)
 * geef de kaarten weergave een switch tussen afbeeldingen en tabel
 * maak een net interface om de kaart informatie uit te lezen
+* maak een functie om een kaart te zoeken in de navbar
 
 stap 2 - een applicatie bouwen
 ...
