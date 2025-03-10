@@ -15,7 +15,7 @@ $response = file_get_contents(URL);
 $data = json_decode($response, true);
 
 echo "<pre>";
-// echo CARD_ID;
+// print_r($data);
 echo "</pre>";
 
 
@@ -81,7 +81,23 @@ echo "</pre>";
                 <section>
                     <p class="p_heading">attacks</p>
                     <table>
-
+                       <?php
+                        foreach($data['data'][0]['attacks'] as $a) {
+                            $cost = implode(", ", $a['cost']);
+                            echo "
+                            <tbody>
+                            <tr>
+                                <td>$cost</td>
+                                <td>{$a['name']}</td>
+                                <td>{$a['damage']}</td>
+                            </tr>
+                            <tr>
+                                <td colspan='3'>{$a['text']}</td>
+                            </tr>
+                       </tbody>
+                            ";
+                        }
+                       ?>
                     </table>
                 </section>
 
