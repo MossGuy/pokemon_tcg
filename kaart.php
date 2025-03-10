@@ -17,8 +17,6 @@ $data = json_decode($response, true);
 echo "<pre>";
 // print_r($data);
 echo "</pre>";
-
-
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +78,7 @@ echo "</pre>";
 
                 <section>
                     <p class="p_heading">attacks</p>
-                    <table>
+                    <table class="attacks">
                        <?php
                         foreach($data['data'][0]['attacks'] as $a) {
                             $cost = implode(", ", $a['cost']);
@@ -101,7 +99,40 @@ echo "</pre>";
                     </table>
                 </section>
 
-                <section></section>
+                <section class="info_list">
+                    <div>
+                        <p class="p_heading">weakness</p>
+                        <p></p>
+                    </div>
+                    <div>
+                        <p class="p_heading">resistance</p>
+                        <p></p>
+                    </div>
+                    <div>
+                        <p class="p_heading">retreat cost</p>
+                        <p></p>
+                    </div>
+                    <div>
+                        <p class="p_heading">artist</p>
+                        <p></p>
+                    </div>
+                    <div>
+                        <p class="p_heading">rarity</p>
+                        <p></p>
+                    </div>
+                    <div>
+                        <p class="p_heading">set</p>
+                        <p></p>
+                    </div class="p_heading">
+                    <div>
+                        <p>number</p>
+                        <p></p>
+                    </div>
+                    <div>
+                        <p class="p_heading">regulation mark</p>
+                        <p></p>
+                    </div>
+                </section>
 
                 <section></section>
 

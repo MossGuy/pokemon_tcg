@@ -47,6 +47,8 @@ ul {
     margin: 0 auto;
 }
 
+
+/* flexbox classes */
 .flex_row {
     display: flex;
     flex-direction: row;
@@ -54,6 +56,10 @@ ul {
 
 .padding_h {
     padding: 0 1rem;
+}
+
+.wrap {
+    flex-wrap: wrap;
 }
 
 
