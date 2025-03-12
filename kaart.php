@@ -87,7 +87,7 @@ echo "</pre>";
                             <tbody>
                             <tr>
                                 <th>$cost</th>
-                                <th>{$a['name']}</th>
+                                <th class='attack_name'>{$a['name']}</th>
                                 <th class='damage'>{$a['damage']}</th>
                             </tr>
                             <tr>
