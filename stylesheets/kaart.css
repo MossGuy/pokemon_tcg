@@ -42,12 +42,50 @@
     margin-bottom: 1rem;
 }
 
+.attacks th, strong {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.damage {
+    text-align: right;
+}
+
 .info_list {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+}
 
-    div {
-        background-color: var(--light-blend);
+.info_list > div {
+    min-width: 180px;
+    /* background-color: var(--lightest-blend); */
+    border-bottom: 2px solid var(--dark);
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+.legalities > div {
+    display: flex;
+    border-radius: 5px;
+    background-color: var(--dark);
+    color: var(--background);
+    margin: 0 5px;
+
+    p {
+        padding: 5px;
     }
+}
+
+.Legal {
+    background-color: #48c78e;
+    color: var(--dark);
+}
+
+.Not_legal {
+    background-color: #eee;
+    color: var(--dark);
 }

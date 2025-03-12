@@ -9,10 +9,11 @@ if (isset($_GET['id'])) {
 
 // TODO: schrijf een functie die een type als string krijgt en een image returned
 
-// define("URL", "https://api.pokemontcg.io/v2/cards?q=id:" . CARD_ID . KEY);
-define("URL", "./test_json_bestanden/pokemon_card.json");
+define("URL", "https://api.pokemontcg.io/v2/cards?q=id:" . CARD_ID . KEY);
+// define("URL", "./test_json_bestanden/pokemon_card.json");
 $response = file_get_contents(URL);
 $data = json_decode($response, true);
+$data_parsed = $data['data'][0];
 
 echo "<pre>";
 // print_r($data);
@@ -32,19 +33,19 @@ echo "</pre>";
     <main class="container">
         <div class="kaart_container">
             <div class="foto_container">
-                <img class="kaart_img" src="<?=$data['data'][0]['images']['large']?>" alt="kaart_foto">
+                <img class="kaart_img" src="<?=$data_parsed['images']['large']?>" alt="kaart_foto">
             </div>
 
             <div class="info_container">
                 <nav class="title">
                     <div>
-                        <h1><?= $data['data'][0]['name']?></h1>
+                        <h1><?=$data_parsed['name']?></h1>
                         <div>
-                            <h2><?= $data['data'][0]['supertype']?> - <?= implode(", ",$data['data'][0]['subtypes'])?></h2>
+                            <h2><?=$data_parsed['supertype']?> - <?= implode(", ",$data_parsed['subtypes'])?></h2>
                         </div>
                     </div>
                     <div class="title_right">
-                        <h2>HP <?=$data['data'][0]['hp']?></h2>
+                        <h2>HP <?=$data_parsed['hp']?></h2>
                         <div class="energy_type">
                             
                         </div>
@@ -80,14 +81,14 @@ echo "</pre>";
                     <p class="p_heading">attacks</p>
                     <table class="attacks">
                        <?php
-                        foreach($data['data'][0]['attacks'] as $a) {
+                        foreach($data_parsed['attacks'] as $a) {
                             $cost = implode(", ", $a['cost']);
                             echo "
                             <tbody>
                             <tr>
-                                <td>$cost</td>
-                                <td>{$a['name']}</td>
-                                <td>{$a['damage']}</td>
+                                <th>$cost</th>
+                                <th>{$a['name']}</th>
+                                <th class='damage'>{$a['damage']}</th>
                             </tr>
                             <tr>
                                 <td colspan='3'>{$a['text']}</td>
@@ -102,39 +103,62 @@ echo "</pre>";
                 <section class="info_list">
                     <div>
                         <p class="p_heading">weakness</p>
-                        <p></p>
+                        <p>
+                            <?=$data_parsed['weaknesses'][0]['type'] ?? "N/A"?> 
+                            <strong><?=$data_parsed['weaknesses'][0]['value'] ?? ""?></strong>
+                        </p>
                     </div>
                     <div>
                         <p class="p_heading">resistance</p>
-                        <p></p>
+                        <p>
+                        <?=$data_parsed['resistances'][0]['type'] ?? "N/A"?> 
+                        <strong><?=$data_parsed['resistances'][0]['value'] ?? ""?></strong>
+                        </p>
                     </div>
                     <div>
                         <p class="p_heading">retreat cost</p>
-                        <p></p>
+                        <p><?=implode(", ", $data_parsed['retreatCost'] ?? ["N/A"])?></p>
                     </div>
                     <div>
                         <p class="p_heading">artist</p>
-                        <p></p>
+                        <p><strong><?=$data_parsed['artist'] ?? "N/A"?></strong></p>
                     </div>
                     <div>
                         <p class="p_heading">rarity</p>
-                        <p></p>
+                        <p><strong><?=$data_parsed['rarity'] ?? "N/A"?></strong></p>
                     </div>
                     <div>
                         <p class="p_heading">set</p>
-                        <p></p>
+                        <p><strong>
+                            <?="<a class='flex_row' href='./kaarten.php?id={$data_parsed['set']['id']}'>
+                            {$data_parsed['set']['name']}
+                            </a>" ?? "N/A"?>
+                        </strong></p>
                     </div class="p_heading">
                     <div>
-                        <p>number</p>
-                        <p></p>
+                        <p class="p_heading">number</p>
+                        <p><strong><?=$data_parsed['number'] ?? "N/A"?></strong></p>
                     </div>
                     <div>
                         <p class="p_heading">regulation mark</p>
-                        <p></p>
+                        <p><strong><?=$data_parsed['resistances'][0]['regulationMark'] ?? "N/A"?></strong></p>
                     </div>
                 </section>
 
-                <section></section>
+                <section class="flex_row legalities">
+                    <div>
+                        <p>Standard</p>
+                        <?= "<p class='" . ($data_parsed['legalities']['standard'] ?? 'Not_legal') . "'>" . ($data_parsed['legalities']['standard'] ?? 'Not legal') . "</p>"; ?>
+                    </div>
+                    <div>
+                        <p>Expanded</p>
+                        <?= "<p class='" . ($data_parsed['legalities']['expanded'] ?? 'Not_legal') . "'>" . ($data_parsed['legalities']['expanded'] ?? 'Not legal') . "</p>"; ?>
+                    </div>
+                    <div>
+                        <p>Unlimited</p>
+                        <?= "<p class='" . ($data_parsed['legalities']['unlimited'] ?? 'Not_legal') . "'>" . ($data_parsed['legalities']['unlimited'] ?? 'Not legal') . "</p>"; ?>
+                    </div>
+                </section>
 
             </div>
         </div>
