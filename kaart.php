@@ -41,6 +41,7 @@ echo "</pre>";
     <title></title>
 </head>
 <body>
+    <?php include "./site_onderdelen/navbar.php"?>
     <main class="container">
         <div class="kaart_container">
             <div class="foto_container">
@@ -271,5 +272,6 @@ echo "</pre>";
             </div>
         </div>
     </main>
+    <?php include "./site_onderdelen/footer.php"?>
 </body>
 </html>
