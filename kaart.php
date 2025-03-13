@@ -166,7 +166,21 @@ echo "</pre>";
                 <div class="divider"></div>
 
                 <section class="<?=$ability?>">
-                    <p class="p_heading">ability</p>
+                    <p class="p_heading">abilities</p>
+                    <?php
+                    if (isset($data_parsed['abilities'])) {
+                        foreach ($data_parsed['abilities'] as $a) {
+                            $name = $a['name'];
+                            $text = $a['text'];
+                            $type = $a['type'];
+
+                            echo "
+                            <h2><span class='accent'>$type:</span> $name</h2>
+                            <p>$text</p>
+                            ";
+                        }
+                    }
+                    ?>
                 </section>
 
                 <section>
