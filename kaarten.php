@@ -5,25 +5,49 @@ if (isset($_GET['id'])) {
     define("SET_ID", $_GET['id']);
 }
 
-// define("URL", "https://api.pokemontcg.io/v2/cards?q=set.id:" . SET_ID . KEY);
-define("URL", "./test_json_bestanden/pokemon_cardset.json");
+define("URL", "https://api.pokemontcg.io/v2/cards?q=set.id:" . SET_ID . KEY);
+// define("URL", "./test_json_bestanden/pokemon_cardset.json");
 
 $response = file_get_contents(URL);
 $data = json_decode($response, true);
 $totalCount = count($data['data']);
 
-// Functie om het numerieke gedeelte van het ID te extraheren
 function extract_numeric_id($card) {
-    // Gebruik reguliere expressie om het nummer na het streepje te halen (bijv. sv8-1 -> 1)
-    preg_match('/-(\d+)$/', $card['id'], $matches);
-    return (int)$matches[1];  // Return het numerieke gedeelte van het ID als een integer
+    $id = $card['id'];
+
+    // Zoek een combinatie van letters en cijfers (bijv. "TG11", "sv8-75a", "75a")
+    preg_match('/([a-zA-Z]*)(\d+)([a-zA-Z]*)$/', $id, $matches);
+
+    // Haal de delen op
+    $prefix   = $matches[1] ?? '';  // Voorloopletters (bijv. "TG" in "TG11")
+    $numeric  = (int)($matches[2] ?? 0);  // Het numerieke deel (bijv. "11" in "TG11")
+    $suffix   = $matches[3] ?? '';  // Achtervoegsel (bijv. "a" in "75a")
+
+    return [$prefix, $numeric, $suffix];
 }
-// Sorteer de kaarten op het numerieke ID
-usort($data['data'], function($a, $b) {
-    $id_a = extract_numeric_id($a);
-    $id_b = extract_numeric_id($b);
-    return $id_a - $id_b;  // Numerieke sortering
-});
+
+// Sorteer de kaarten correct
+try {
+    usort($data['data'], function($a, $b) {
+        [$prefix_a, $num_a, $suffix_a] = extract_numeric_id($a);
+        [$prefix_b, $num_b, $suffix_b] = extract_numeric_id($b);
+
+        // Vergelijk eerst op prefix (bijv. "TG" < "sv8")
+        if ($prefix_a !== $prefix_b) {
+            return strcmp($prefix_a, $prefix_b);
+        }
+
+        // Vergelijk dan op het numerieke gedeelte
+        if ($num_a !== $num_b) {
+            return $num_a - $num_b;
+        }
+
+        // Vergelijk als laatste op het achtervoegsel (bijv. "75a" < "75b")
+        return strcmp($suffix_a, $suffix_b);
+    });
+} catch (Exception $e) {}
+
+
 
 
 echo '<pre>'; 

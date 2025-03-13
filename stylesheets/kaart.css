@@ -1,8 +1,9 @@
+ /* ------------------- */
+/* De hoofd containers */
 .kaart_container {
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 1rem;
-    /* background-color: var(--dark-blend); */
 }
 
 .foto_container {
@@ -14,26 +15,99 @@
 }
 
 
-
 .info_container {
-    width: 50%;
+    width: 55%;
     padding: 0.75rem;
-    /* background-color: var(--light-blend); */
 }
-
-.title {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.title_right {
-    display: flex;
-}
-
 
 .divider {
     border: 1px solid var(--dark);
     width: 100%;
     margin: 1.5rem 0;
+}
+
+ /* ---------- */
+/* De prijzen */
+#TCGPlayer_div, #Cardmarket_div {
+    margin-bottom: 2rem;
+}
+
+.site_link {
+    font-weight: 500;
+}
+
+.price_list > div {
+    width: 130px;
+    margin-bottom: 0.5rem;
+    strong {
+        color: var(--accent);
+    }
+}
+
+ /* ---------------- */
+/* De attacks table */
+
+.attacks th, strong {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.attack_name {
+    /*kan op 100 wanneer de attack cost images zijn */
+    width: 60%;
+}
+
+.damage {
+    text-align: right;
+}
+
+ /* ------------- */
+/* De info lijst */
+.info_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.info_list > div {
+    min-width: 210px;
+    border-bottom: 2px solid var(--dark);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+.set_name {
+    max-width: 170px;
+}
+
+.set_symbol {
+    margin-top: auto;
+    height: 30px;
+    aspect-ratio: 1/1;
+}
+
+ /* ------------------ */
+/* Legaliteiten lijst */
+.legalities > div {
+    display: flex;
+    border-radius: 5px;
+    background-color: var(--dark);
+    color: var(--background);
+    margin: 0 5px;
+
+    p {
+        padding: 5px;
+    }
+}
+
+.Legal {
+    background-color: #48c78e;
+    color: var(--dark);
+}
+
+.Not_legal {
+    background-color: #eee;
+    color: var(--dark);
 }

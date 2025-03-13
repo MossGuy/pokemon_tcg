@@ -28,8 +28,25 @@ h2 {
     font-weight: 400;
 }
 
+a {
+    text-decoration: none;
+    color: var(--dark);
+}
+
+a:hover {
+    color: var(--dark-blend);
+}
+
 ul {
     width: fit-content;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+.unavailable {
+    display: none !important;
 }
 
 .set_title {
@@ -47,13 +64,31 @@ ul {
     margin: 0 auto;
 }
 
+.accent {
+    color: var(--accent);
+}
+
+
+/* flexbox classes */
 .flex_row {
     display: flex;
     flex-direction: row;
 }
 
+.j_between {
+    justify-content: space-between;
+}
+
 .padding_h {
     padding: 0 1rem;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.gap5 {
+    gap: 5px;
 }
 
 
