@@ -12,22 +12,35 @@ $response = file_get_contents(URL);
 $data = json_decode($response, true);
 $totalCount = count($data['data']);
 
-// Functie om het numerieke gedeelte van het ID te extraheren
 function extract_numeric_id($card) {
-    // Gebruik reguliere expressie om het nummer na het streepje te halen (bijv. sv8-1 -> 1)
-    preg_match('/-(\d+)$/', $card['id'], $matches);
-    return (int)$matches[1];  // Return het numerieke gedeelte van het ID als een integer
+    // Gebruik regex om zowel het numerieke als het optionele letterdeel op te vangen
+    preg_match('/-(\d+)([a-zA-Z]*)$/', $card['id'], $matches);
+
+    // Haal het numerieke gedeelte op en zet het om naar een integer
+    $numeric_part = (int)$matches[1];
+
+    // Haal het optionele letterdeel op (kan leeg zijn)
+    $letter_part = $matches[2] ?? '';
+
+    return [$numeric_part, $letter_part];
 }
-// Sorteer de kaarten op het numerieke ID
+
+// Sorteer de kaarten op numeriek ID en daarna op het letterdeel
 try {
     usort($data['data'], function($a, $b) {
-        $id_a = extract_numeric_id($a);
-        $id_b = extract_numeric_id($b);
-        return $id_a - $id_b;  // Numerieke sortering
-    });
-} catch (Exception $e) {
+        [$id_a, $letter_a] = extract_numeric_id($a);
+        [$id_b, $letter_b] = extract_numeric_id($b);
 
-}
+        // Vergelijk eerst op numeriek ID
+        if ($id_a !== $id_b) {
+            return $id_a - $id_b;
+        }
+
+        // Als de nummers gelijk zijn, sorteer op het lettergedeelte
+        return strcmp($letter_a, $letter_b);
+    });
+} catch (Exception $e) {}
+
 
 
 echo '<pre>'; 
