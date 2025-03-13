@@ -59,12 +59,20 @@ ul {
     flex-direction: row;
 }
 
+.j_between {
+    justify-content: space-between;
+}
+
 .padding_h {
     padding: 0 1rem;
 }
 
 .wrap {
     flex-wrap: wrap;
+}
+
+.gap5 {
+    gap: 5px;
 }
 
 

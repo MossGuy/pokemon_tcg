@@ -37,17 +37,17 @@ echo "</pre>";
             </div>
 
             <div class="info_container">
-                <nav class="title">
+                <nav class="flex_row j_between">
                     <div>
                         <h1><?=$data_parsed['name']?></h1>
                         <div>
                             <h2><?=$data_parsed['supertype']?> - <?= implode(", ",$data_parsed['subtypes'])?></h2>
                         </div>
                     </div>
-                    <div class="title_right">
+                    <div class="flex_row gap5">
                         <h2>HP <?=$data_parsed['hp']?></h2>
                         <div class="energy_type">
-                            
+                            <?=implode(", ", $data_parsed['types'])?>
                         </div>
                     </div>
                 </nav>
@@ -56,7 +56,7 @@ echo "</pre>";
 
                 <section>
                     <div class="flex_row">
-                        <h2 class="padding_h">Prices</h2>
+                        <h2>Prices</h2>
                         <div class="padding_h">
                             <input id="TCGPlayer" type="checkbox" checked>
                             <label for="TCGPlayer">TCGPlayer</label>
@@ -83,12 +83,13 @@ echo "</pre>";
                        <?php
                         foreach($data_parsed['attacks'] as $a) {
                             $cost = implode(", ", $a['cost']);
+                            $damage = $a['damage'] ?? "";
                             echo "
                             <tbody>
                             <tr>
                                 <th>$cost</th>
                                 <th class='attack_name'>{$a['name']}</th>
-                                <th class='damage'>{$a['damage']}</th>
+                                <th class='damage'>$damage</th>
                             </tr>
                             <tr>
                                 <td colspan='3'>{$a['text']}</td>
@@ -130,9 +131,10 @@ echo "</pre>";
                     <div>
                         <p class="p_heading">set</p>
                         <p><strong>
-                            <?="<a class='flex_row' href='./kaarten.php?id={$data_parsed['set']['id']}'>
-                            {$data_parsed['set']['name']}
-                            </a>" ?? "N/A"?>
+                            <a class='flex_row j_between' href='./kaarten.php?id=<?=$data_parsed['set']['id']?>'>
+                            <span class="set_name"><?=$data_parsed['set']['name']?></span>
+                            <img class="set_symbol" src="<?=$data_parsed['set']['images']['symbol']?>" alt="<?=$data_parsed['set']['name']?>">
+                            </a>
                         </strong></p>
                     </div class="p_heading">
                     <div>
