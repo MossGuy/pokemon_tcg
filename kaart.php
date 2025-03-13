@@ -15,6 +15,11 @@ $response = file_get_contents(URL);
 $data = json_decode($response, true);
 $data_parsed = $data['data'][0];
 
+$tcgplayer = $data_parsed['tcgplayer'] ?? 'unavailable';
+$cardmarket = $data_parsed['cardmarket'] ?? 'unavailable';
+
+
+
 echo "<pre>";
 // print_r($data);
 echo "</pre>";
@@ -68,15 +73,15 @@ echo "</pre>";
                         </div>
                     </div>
 
-                    <div id="TCGPlayer_div">
-                        <p><a class="site_link" href="<?=$data_parsed['tcgplayer']['url']?>">Buy Now From TCGplayer</a></p>
-                        <p>Last Updated </p>
-                        
+                    <div id="TCGPlayer_div" class="<?=$tcgplayer?>">
+                        <p><a class="site_link" href="<?=$data_parsed['tcgplayer']['url']??''?>">Buy Now From TCGplayer</a></p>
+                        <p>Last Updated <?=$data_parsed['tcgplayer']['updatedAt']?></p>
+
                     </div>
 
-                    <div id="Cardmarket_div">
+                    <div id="Cardmarket_div" class="<?=$cardmarket?>">
                         <p><a class="site_link" href="<?=$data_parsed['cardmarket']['url']?>">Buy Now From Cardmarket</a></p>
-                        <p>Last Updated </p>
+                        <p>Last Updated <?=$data_parsed['cardmarket']['updatedAt']??''?></p>
 
                     </div>
                 </section>

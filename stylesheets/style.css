@@ -41,6 +41,10 @@ ul {
     width: fit-content;
 }
 
+.unavailable {
+    display: none !important;
+}
+
 .set_title {
     width: 100vw;
     color: var(--dark);
