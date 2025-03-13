@@ -13,33 +13,40 @@ $data = json_decode($response, true);
 $totalCount = count($data['data']);
 
 function extract_numeric_id($card) {
-    // Gebruik regex om zowel het numerieke als het optionele letterdeel op te vangen
-    preg_match('/-(\d+)([a-zA-Z]*)$/', $card['id'], $matches);
+    $id = $card['id'];
 
-    // Haal het numerieke gedeelte op en zet het om naar een integer
-    $numeric_part = (int)$matches[1];
+    // Zoek een combinatie van letters en cijfers (bijv. "TG11", "sv8-75a", "75a")
+    preg_match('/([a-zA-Z]*)(\d+)([a-zA-Z]*)$/', $id, $matches);
 
-    // Haal het optionele letterdeel op (kan leeg zijn)
-    $letter_part = $matches[2] ?? '';
+    // Haal de delen op
+    $prefix   = $matches[1] ?? '';  // Voorloopletters (bijv. "TG" in "TG11")
+    $numeric  = (int)($matches[2] ?? 0);  // Het numerieke deel (bijv. "11" in "TG11")
+    $suffix   = $matches[3] ?? '';  // Achtervoegsel (bijv. "a" in "75a")
 
-    return [$numeric_part, $letter_part];
+    return [$prefix, $numeric, $suffix];
 }
 
-// Sorteer de kaarten op numeriek ID en daarna op het letterdeel
+// Sorteer de kaarten correct
 try {
     usort($data['data'], function($a, $b) {
-        [$id_a, $letter_a] = extract_numeric_id($a);
-        [$id_b, $letter_b] = extract_numeric_id($b);
+        [$prefix_a, $num_a, $suffix_a] = extract_numeric_id($a);
+        [$prefix_b, $num_b, $suffix_b] = extract_numeric_id($b);
 
-        // Vergelijk eerst op numeriek ID
-        if ($id_a !== $id_b) {
-            return $id_a - $id_b;
+        // Vergelijk eerst op prefix (bijv. "TG" < "sv8")
+        if ($prefix_a !== $prefix_b) {
+            return strcmp($prefix_a, $prefix_b);
         }
 
-        // Als de nummers gelijk zijn, sorteer op het lettergedeelte
-        return strcmp($letter_a, $letter_b);
+        // Vergelijk dan op het numerieke gedeelte
+        if ($num_a !== $num_b) {
+            return $num_a - $num_b;
+        }
+
+        // Vergelijk als laatste op het achtervoegsel (bijv. "75a" < "75b")
+        return strcmp($suffix_a, $suffix_b);
     });
 } catch (Exception $e) {}
+
 
 
 
