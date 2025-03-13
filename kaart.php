@@ -27,6 +27,7 @@ echo "</pre>";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./stylesheets/style.css">
     <link rel="stylesheet" href="./stylesheets/kaart.css">
+    <script src="./script.js" defer></script>
     <title></title>
 </head>
 <body>
@@ -58,19 +59,24 @@ echo "</pre>";
                     <div class="flex_row">
                         <h2>Prices</h2>
                         <div class="padding_h">
-                            <input id="TCGPlayer" type="checkbox" checked>
+                            <input id="TCGPlayer" type="checkbox" checked onclick="toggle_menu('TCGPlayer_div', 'block')">
                             <label for="TCGPlayer">TCGPlayer</label>
                         </div>
                         <div class="padding_h">
-                            <input id="Cardmarket" type="checkbox" checked>
+                            <input id="Cardmarket" type="checkbox" checked onclick="toggle_menu('Cardmarket_div', 'block')">
                             <label for="Cardmarket">Cardmarket</label>
                         </div>
                     </div>
 
                     <div id="TCGPlayer_div">
-
+                        <p><a class="site_link" href="<?=$data_parsed['tcgplayer']['url']?>">Buy Now From TCGplayer</a></p>
+                        <p>Last Updated </p>
+                        
                     </div>
+
                     <div id="Cardmarket_div">
+                        <p><a class="site_link" href="<?=$data_parsed['cardmarket']['url']?>">Buy Now From Cardmarket</a></p>
+                        <p>Last Updated </p>
 
                     </div>
                 </section>
