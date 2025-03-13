@@ -20,6 +20,12 @@
     padding: 0.75rem;
 }
 
+.info_container > nav {
+    background-color: unset;
+    border: unset;
+    padding: 0;
+}
+
 .divider {
     border: 1px solid var(--dark);
     width: 100%;

@@ -98,6 +98,10 @@ nav {
     padding: 0.5rem 2rem;
 }
 
+.links {
+    margin-left: auto;
+}
+
 @media screen and (min-width: 1216px) {
     .container {
         max-width: 1300px;
