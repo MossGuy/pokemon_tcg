@@ -5,8 +5,8 @@ if (isset($_GET['id'])) {
     define("SET_ID", $_GET['id']);
 }
 
-// define("URL", "https://api.pokemontcg.io/v2/cards?q=set.id:" . SET_ID . KEY);
-define("URL", "./test_json_bestanden/pokemon_cardset.json");
+define("URL", "https://api.pokemontcg.io/v2/cards?q=set.id:" . SET_ID . KEY);
+// define("URL", "./test_json_bestanden/pokemon_cardset.json");
 
 $response = file_get_contents(URL);
 $data = json_decode($response, true);
@@ -19,11 +19,15 @@ function extract_numeric_id($card) {
     return (int)$matches[1];  // Return het numerieke gedeelte van het ID als een integer
 }
 // Sorteer de kaarten op het numerieke ID
-usort($data['data'], function($a, $b) {
-    $id_a = extract_numeric_id($a);
-    $id_b = extract_numeric_id($b);
-    return $id_a - $id_b;  // Numerieke sortering
-});
+try {
+    usort($data['data'], function($a, $b) {
+        $id_a = extract_numeric_id($a);
+        $id_b = extract_numeric_id($b);
+        return $id_a - $id_b;  // Numerieke sortering
+    });
+} catch (Exception $e) {
+
+}
 
 
 echo '<pre>'; 
