@@ -67,6 +67,7 @@ echo '</pre>';
     <title>Pokémon tcg api</title>
 </head>
 <body>
+    <?php include "./site_onderdelen/navbar.php"?>
     <main class="container">
         <section class="card_container">
             <h1 class="set_title"><?=SET_ID?></h1>
@@ -85,7 +86,6 @@ echo '</pre>';
             ?>
         </section>
     </main>
-
-
+    <?php include "./site_onderdelen/footer.php"?>
 </body>
 </html>

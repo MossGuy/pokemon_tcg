@@ -91,6 +91,12 @@ section {
     gap: 5px;
 }
 
+/* navigatie balk */
+nav {
+    background-color: var(--dark-blend);
+    border-bottom: 2px solid var(--dark);
+    padding: 0.5rem 2rem;
+}
 
 @media screen and (min-width: 1216px) {
     .container {
