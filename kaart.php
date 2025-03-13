@@ -15,13 +15,18 @@ $response = file_get_contents(URL);
 $data = json_decode($response, true);
 $data_parsed = $data['data'][0];
 
-$tcgplayer = $data_parsed['tcgplayer'] ?? 'unavailable';
-$cardmarket = $data_parsed['cardmarket'] ?? 'unavailable';
+// definieer welke div de unavailable class krijgt (display: none !important;)
+$tcgplayer_main = $data_parsed['tcgplayer']['updatedAt']??'unavailable';
+$tcgplayer_normal = $data_parsed['tcgplayer']['prices']['normal']['market']??'unavailable';
+$tcgplayer_holo = $data_parsed['tcgplayer']['prices']['holofoil']['market']??'unavailable';
+$tcgplayer_reverseholo = $data_parsed['tcgplayer']['prices']['reverseHolofoil']['market']??'unavailable';
+$cardmarket_main = $data_parsed['cardmarket']['updatedAt']??'unavailable';
+$ability = $data_parsed['abilities'][0]['name']??'unavailable';
 
 
 
 echo "<pre>";
-// print_r($data);
+// print_r($data_parsed);
 echo "</pre>";
 ?>
 
@@ -73,20 +78,96 @@ echo "</pre>";
                         </div>
                     </div>
 
-                    <div id="TCGPlayer_div" class="<?=$tcgplayer?>">
+                    <div id="TCGPlayer_div" class="<?=$tcgplayer_main?>">
                         <p><a class="site_link" href="<?=$data_parsed['tcgplayer']['url']??''?>">Buy Now From TCGplayer</a></p>
-                        <p>Last Updated <?=$data_parsed['tcgplayer']['updatedAt']?></p>
+                        <p class="p_heading">Last Updated <?=$data_parsed['tcgplayer']['updatedAt']??''?></p>
+                        <div class="flex_row j_between price_list <?=$tcgplayer_normal?>">
+                            <div>
+                                <p>normal market</p>
+                                <p><strong><?=$data_parsed['tcgplayer']['prices']['normal']['market']??''?></strong></p>
+                            </div>
+                            <div>
+                                <p>normal low</p>
+                                <p><strong><?=$data_parsed['tcgplayer']['prices']['normal']['low']??''?></strong></p>
+                            </div>
+                            <div>
+                                <p>normal mid</p>
+                                <p><strong><?=$data_parsed['tcgplayer']['prices']['normal']['mid']??''?></strong></p>
+                            </div>
+                            <div>
+                                <p>normal high</p>
+                                <p><strong><?=$data_parsed['tcgplayer']['prices']['normal']['high']??''?></strong></p>
+                            </div>
+                        </div>
 
+                        <div class="flex_row j_between price_list <?=$tcgplayer_holo?>">
+                            <div>
+                                <p>holofoil market</p>
+                                <p><strong><?=$data_parsed['tcgplayer']['prices']['holofoil']['market']??''?></strong></p>
+                            </div>
+                            <div>
+                                <p>holofoil low</p>
+                                <p><strong><?=$data_parsed['tcgplayer']['prices']['holofoil']['low']??''?></strong></p>
+                            </div>
+                            <div>
+                                <p>holofoil mid</p>
+                                <p><strong><?=$data_parsed['tcgplayer']['prices']['holofoil']['mid']??''?></strong></p>
+                            </div>
+                            <div>
+                                <p>holofoil high</p>
+                                <p><strong><?=$data_parsed['tcgplayer']['prices']['holofoil']['high']??''?></strong></p>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    <div class="flex_row j_between price_list <?=$tcgplayer_reverseholo?>">
+                        <div>
+                            <p>reverse holofoil market</p>
+                            <p><strong><?=$data_parsed['tcgplayer']['prices']['reverseHolofoil']['market']??''?></strong></p>
+                        </div>
+                        <div>
+                            <p>reverse holofoil low</p>
+                            <p><strong><?=$data_parsed['tcgplayer']['prices']['reverseHolofoil']['low']??''?></strong></p>
+                        </div>
+                        <div>
+                            <p>reverse holofoil mid</p>
+                            <p><strong><?=$data_parsed['tcgplayer']['prices']['reverseHolofoil']['mid']??''?></strong></p>
+                        </div>
+                        <div>
+                            <p>reverse holofoil high</p>
+                            <p><strong><?=$data_parsed['tcgplayer']['prices']['reverseHolofoil']['high']??''?></strong></p>
+                        </div>
                     </div>
 
-                    <div id="Cardmarket_div" class="<?=$cardmarket?>">
-                        <p><a class="site_link" href="<?=$data_parsed['cardmarket']['url']?>">Buy Now From Cardmarket</a></p>
-                        <p>Last Updated <?=$data_parsed['cardmarket']['updatedAt']??''?></p>
-
+                    <div id="Cardmarket_div" class="<?=$cardmarket_main?>">
+                        <p><a class="site_link" href="<?=$data_parsed['cardmarket']['url']??''?>">Buy Now From Cardmarket</a></p>
+                        <p class="p_heading">Last Updated <?=$data_parsed['cardmarket']['updatedAt']??''?></p>
+                        <div class="flex_row j_between price_list">
+                            <div>
+                                <p>price trend</p>
+                                <p><strong><?=$data_parsed['cardmarket']['prices']['trendPrice']??''?></strong></p>
+                            </div>
+                            <div>
+                                <p>1 day average</p>
+                                <p><strong><?=$data_parsed['cardmarket']['prices']['avg1']??''?></strong></p>
+                            </div>
+                            <div>
+                                <p>7 day average</p>
+                                <p><strong><?=$data_parsed['cardmarket']['prices']['avg7']??''?></strong></p>
+                            </div>
+                            <div>
+                                <p>30 day average</p>
+                                <p><strong><?=$data_parsed['cardmarket']['prices']['avg30']??''?></strong></p>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
                 <div class="divider"></div>
+
+                <section class="<?=$ability?>">
+                    <p class="p_heading">ability</p>
+                </section>
 
                 <section>
                     <p class="p_heading">attacks</p>

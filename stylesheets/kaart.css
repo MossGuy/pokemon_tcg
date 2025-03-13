@@ -36,6 +36,14 @@
     font-weight: 500;
 }
 
+.price_list > div {
+    width: 130px;
+    margin-bottom: 0.5rem;
+    strong {
+        color: var(--accent);
+    }
+}
+
  /* ---------------- */
 /* De attacks table */
 .attacks {
