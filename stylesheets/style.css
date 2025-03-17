@@ -10,6 +10,7 @@
     --background: #E2F1E7;
 
     --accent: #D94B4B;
+    --accent-blend: #D94B4Bbb;
 }
 
 * {
@@ -79,6 +80,10 @@ section {
     justify-content: space-between;
 }
 
+.i_center {
+    align-items: center;
+}
+
 .padding_h {
     padding: 0 1rem;
 }
@@ -95,11 +100,47 @@ section {
 nav {
     background-color: var(--dark-blend);
     border-bottom: 2px solid var(--dark);
-    padding: 0.5rem 2rem;
+    padding: 0.2rem 0;
+}
+
+.a {
+    height: 100%;
+    background-color: green;
+}
+
+nav form {
+    display: flex;
+    align-items: center;
+}
+
+nav input {
+    height: 35px;
+    margin: 0 0.5rem;
+    border: 2px solid var(--dark);
+    border-radius: 5px;
+}
+
+nav input::placeholder {
+    padding: 0 0.4rem;
+}
+
+nav input:focus {
+    outline: none;
+    border-color: var(--accent-blend);
+    box-shadow: rgba(0, 0, 0, 0.35) 5px 5px 5px;
+}
+
+.nav_icon {
+    width: 60px;
 }
 
 .links {
     margin-left: auto;
+}
+
+.links > a {
+    margin: auto;
+    padding: 1rem 0;
 }
 
 @media screen and (min-width: 1216px) {
