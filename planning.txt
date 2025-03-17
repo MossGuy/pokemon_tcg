@@ -1,13 +1,9 @@
 Stappenplan:
 
-TODO: werk de 'Undefined array key' errors er uit
-
 stap 1 - uitlezen
-* filter de sets op toernooi legaliteid
-* geef de kaarten weergave een net interface (titel en filters)
 * geef de kaarten weergave een switch tussen afbeeldingen en tabel
-* maak een net interface om de kaart informatie uit te lezen
-* maak een functie om een kaart te zoeken in de navbar
+* maak een functie om een kaart te zoeken in de navbar / home pagina
+* maak de navbar / footer af
 
 stap 2 - een applicatie bouwen
 ...
