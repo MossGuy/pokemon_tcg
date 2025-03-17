@@ -69,6 +69,10 @@ section {
     color: var(--accent);
 }
 
+.t_center {
+    text-align: center;
+}
+
 
 /* flexbox classes */
 .flex_row {
