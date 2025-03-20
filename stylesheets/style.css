@@ -1,3 +1,16 @@
+ /* ------------- */
+/* Inhoudsopgave: */
+
+/* font & root */
+/* fundering - navbar, main, footer, section */
+/* semantics */
+/* classes */
+/* flexbox */
+/* mediaquery */
+
+
+ /* ----------- */
+/* font & root */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 :root {
@@ -13,6 +26,8 @@
     --accent-blend: #D94B4Bbb;
 }
 
+ /* --------- */
+/* fundering */
 * {
     margin: 0;
     box-sizing: border-box;
@@ -27,118 +42,6 @@ body {
     flex-direction: column;
 }
 
-main {
-    flex: 1;
-}
-
-section {
-    margin-bottom: 2rem;
-}
-
-footer {
-    background-color: var(--dark-blend);
-    color: var(--background);
-    border-top: 2px solid var(--dark);
-    padding: 1rem 0;
-    text-align: center;
-    width: 100%;
-    margin-top: 1rem;
-}
-
-h2 {
-    font-size: 20px;
-    font-weight: 400;
-}
-
-a {
-    text-decoration: none;
-    color: var(--dark);
-}
-
-a:hover {
-    color: var(--dark-blend);
-}
-
-ul {
-    width: fit-content;
-}
-
-button {
-    background-color: var(--background);
-    border: 2px solid var(--dark);
-    color: var(--dark);
-    border-radius: 5px;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: var(--dark);
-    color: var(--background);
-}
-
-.unavailable {
-    display: none !important;
-}
-
-.set_title {
-    width: 100vw;
-    color: var(--dark);
-    font-size: 30px;
-    margin-top: 2rem;
-}
-
-.p_heading {
-    margin-bottom: 1rem;
-}
-
-.container {
-    margin: 0 auto;
-}
-
-.accent {
-    color: var(--accent);
-}
-
-.t_center {
-    text-align: center;
-}
-
-.w_100 {
-    width: 100%;
-}
-
-/* flexbox classes */
-.flex_row {
-    display: flex;
-    flex-direction: row;
-}
-
-.j_between {
-    justify-content: space-between;
-}
-
-.j_center {
-    justify-content: center;
-}
-
-.i_center {
-    align-items: center;
-}
-
-.padding_h {
-    padding: 0 1rem;
-}
-
-.wrap {
-    flex-wrap: wrap;
-}
-
-.gap5 {
-    gap: 5px;
-}
-
- /* ------ */
 /* navbar */
 nav {
     background-color: var(--dark-blend);
@@ -185,7 +88,127 @@ nav input:focus {
     padding: 1rem 0;
 }
 
+/* main */
+main {
+    flex: 1;
+}
 
+/* footer */
+footer {
+    background-color: var(--dark-blend);
+    color: var(--background);
+    border-top: 2px solid var(--dark);
+    padding: 1rem 0;
+    text-align: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* section */
+section {
+    margin-bottom: 2rem;
+}
+
+ /* --------- */
+/* semantics */
+h2 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: var(--dark);
+}
+
+a:hover {
+    color: var(--dark-blend);
+}
+
+ul {
+    width: fit-content;
+}
+
+button {
+    background-color: var(--background);
+    border: 2px solid var(--dark);
+    color: var(--dark);
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--dark);
+    color: var(--background);
+}
+
+ /* ------- */
+/* classes */
+.unavailable {
+    display: none !important;
+}
+
+.set_title {
+    width: 100vw;
+    color: var(--dark);
+    font-size: 30px;
+    margin-top: 2rem;
+}
+
+.p_heading {
+    margin-bottom: 1rem;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+.accent {
+    color: var(--accent);
+}
+
+.t_center {
+    text-align: center;
+}
+
+.w_100 {
+    width: 100%;
+}
+
+ /* ------- */
+/* flexbox */
+.flex_row {
+    display: flex;
+    flex-direction: row;
+}
+
+.j_between {
+    justify-content: space-between;
+}
+
+.j_center {
+    justify-content: center;
+}
+
+.i_center {
+    align-items: center;
+}
+
+.padding_h {
+    padding: 0 1rem;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.gap5 {
+    gap: 5px;
+}
+
+ /* ---------- */
+/* mediaquery */
 @media screen and (min-width: 1216px) {
     .container {
         max-width: 1300px;
