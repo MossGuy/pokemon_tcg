@@ -1,3 +1,12 @@
+referentie websites:
+https://api.pokemontcg.io/v2/sets?q=series:Scarlet%20&%20Violet
+https://api.pokemontcg.io/v2/cards?q=id:sv7-111
+https://pokemontcg.guru/sets
+
+TODO:
+schrijf een functie die een pokemon type als string krijgt en een image returned
+
+
 Stappenplan:
 
 stap 1 - uitlezen

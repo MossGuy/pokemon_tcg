@@ -4,11 +4,6 @@ if (isset($_GET['id'])) {
     define("CARD_ID", $_GET['id']);
 }
 
- // referentie website
-// https://api.pokemontcg.io/v2/cards?q=id:sv7-111
-
-// TODO: schrijf een functie die een type als string krijgt en een image returned
-
 define("URL", "https://api.pokemontcg.io/v2/cards?q=id:" . CARD_ID . KEY);
 // define("URL", "./test_json_bestanden/pokemon_card.json");
 $response = file_get_contents(URL);
