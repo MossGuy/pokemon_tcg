@@ -1,6 +1,14 @@
-Stappenplan:
+referentie websites:
+https://api.pokemontcg.io/v2/sets?q=series:Scarlet%20&%20Violet
+https://pokemontcg.guru/sets
+// https://api.pokemontcg.io/v2/cards?q=id:sv7-111
 
-TODO: werk de 'Undefined array key' errors er uit
+
+TODO:
+schrijf een functie die een pokemon type als string krijgt en een image returned
+
+
+Stappenplan:
 
 stap 1 - uitlezen
 * filter de sets op toernooi legaliteid
