@@ -3,6 +3,7 @@ include "./api_key.php";
 
 
 $query = isset($_GET['query']) ? trim($_GET['query']) : '';
+// $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
 // Basisvalidatie: beperk lengte en filter gevaarlijke tekens
 if (empty($query) || strlen($query) > 100) {
@@ -17,6 +18,7 @@ $response = file_get_contents(URL);
 $data = json_decode($response, true);
 $totalCount = count($data['data']??0);
 $not_found_div = ($totalCount == 0) ? "" : "unavailable";
+$found_div = ($totalCount > 0) ? "" : "unavailable";
 
 echo '<pre>'; 
 // print_r($data['data'][1]);
@@ -37,7 +39,7 @@ echo '</pre>';
 <body>
     <?php include "./site_onderdelen/navbar.php"?>
     <main class="container">
-        <section class="card_container">
+        <section class="card_container <?=$found_div?>">
             <?php
             for ($i = 0; $i < $totalCount; $i++) {
                 $id = $data['data'][$i]['id'];
@@ -51,6 +53,10 @@ echo '</pre>';
                 " . PHP_EOL;
             }
             ?>
+            <!-- <div class="w_100 flex_row gap5 j_center">
+                <button onclick="window.location.href='./kaarten_zoeken.php?query=<?=$query?>&page=1'">Vorige</button>
+                <button onclick="window.location.href='./kaarten_zoeken.php?query=<?=$query?>&page=2'">Volgende</button>
+            </div> -->
         </section>
         <section class="t_center <?=$not_found_div?>">
             <img src="./images/confused.png" alt="">

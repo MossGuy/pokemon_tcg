@@ -63,6 +63,20 @@ ul {
     width: fit-content;
 }
 
+button {
+    background-color: var(--background);
+    border: 2px solid var(--dark);
+    color: var(--dark);
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--dark);
+    color: var(--background);
+}
+
 .unavailable {
     display: none !important;
 }
@@ -90,6 +104,9 @@ ul {
     text-align: center;
 }
 
+.w_100 {
+    width: 100%;
+}
 
 /* flexbox classes */
 .flex_row {
@@ -99,6 +116,10 @@ ul {
 
 .j_between {
     justify-content: space-between;
+}
+
+.j_center {
+    justify-content: center;
 }
 
 .i_center {
