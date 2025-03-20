@@ -22,6 +22,26 @@
 body {
     height: 100vh;
     background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+footer {
+    background-color: var(--dark-blend);
+    color: var(--background);
+    border-top: 2px solid var(--dark);
+    padding: 1rem 0;
+    text-align: center;
+    width: 100%;
+    margin-top: 1rem;
 }
 
 h2 {
@@ -40,10 +60,6 @@ a:hover {
 
 ul {
     width: fit-content;
-}
-
-section {
-    margin-bottom: 2rem;
 }
 
 .unavailable {
@@ -100,16 +116,16 @@ section {
     gap: 5px;
 }
 
-/* navigatie balk */
+ /* ------ */
+/* navbar */
 nav {
     background-color: var(--dark-blend);
     border-bottom: 2px solid var(--dark);
     padding: 0.2rem 0;
 }
 
-.a {
-    height: 100%;
-    background-color: green;
+footer a:hover {
+    color: var(--accent);
 }
 
 nav form {
@@ -146,6 +162,7 @@ nav input:focus {
     margin: auto;
     padding: 1rem 0;
 }
+
 
 @media screen and (min-width: 1216px) {
     .container {
