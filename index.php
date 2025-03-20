@@ -18,6 +18,12 @@
         </div>
     </header>
 
+    <main>
+        <section class="container">
+            
+        </section>
+    </main>
+
     <?php include "./site_onderdelen/footer.php"?>
 </body>
 </html>
