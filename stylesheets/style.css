@@ -32,7 +32,6 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Ubuntu", serif;
-    transition: all 0.2s;
 }
 
 body {
@@ -49,8 +48,12 @@ nav {
     padding: 0.2rem 0;
 }
 
-footer a:hover {
-    color: var(--accent);
+nav a {
+    transition: all 0.2s;
+}
+
+nav a:hover {
+    color: var(--lightest);
 }
 
 nav form {
@@ -104,6 +107,14 @@ footer {
     margin-top: 1rem;
 }
 
+footer a {
+    transition: all 0.2s;
+}
+
+footer a:hover {
+    color: var(--accent);
+}
+
 /* section */
 section {
     margin-bottom: 2rem;
@@ -136,6 +147,7 @@ button {
     border-radius: 5px;
     padding: 0.5rem 1rem;
     cursor: pointer;
+    transition: all 0.2s;
 }
 
 button:hover {

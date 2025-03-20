@@ -25,6 +25,7 @@
     padding: 16px;
     text-align: center;
     overflow: hidden;
+    transition: all 0.2s;
 }
 
 .card_image {
