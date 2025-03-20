@@ -179,8 +179,8 @@ echo "</pre>";
 
                 <section class="<?=$rules?>">
                     <p class="p_heading">rules</p>
-                    <p><?=$data_parsed['rules'][0]?></p><br>
-                    <p><?=$data_parsed['rules'][1]?></p>
+                    <p><?=$data_parsed['rules'][0]??''?></p><br>
+                    <p><?=$data_parsed['rules'][1]??''?></p>
                 </section>
 
                 <section class="<?=$attacks?>">
