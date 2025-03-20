@@ -101,7 +101,7 @@
     border-radius: 5px;
     background-color: var(--dark);
     color: var(--background);
-    margin: 0 5px;
+    margin-right: 5px;
 
     p {
         padding: 5px;
