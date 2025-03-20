@@ -1,10 +1,6 @@
 <?php
 include "./api_key.php";
 
-   // referentie websites
-  //  https://api.pokemontcg.io/v2/sets?q=series:Scarlet%20&%20Violet
- //   https://pokemontcg.guru/sets
-
 define("SERIES", [
     "Scarlet & Violet", "Sword & Shield", "Other", "Sun & Moon", "XY", "Black & White",
     "HeartGold & SoulSilver", "Platinum", "POP", "Diamond & Pearl", "EX", "NP", "E-Card", "NEO", "Gym", "Base"
