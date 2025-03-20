@@ -57,7 +57,7 @@ $found_div = ($dataCount > 0) ? "" : "unavailable";
                 " . PHP_EOL;
             }
             ?>
-            <div class="w_100 flex_row gap5 j_center">
+            <div class="w_100 flex_row gap5 j_center wrap">
                 <!-- Vorige knop -->
                 <button 
                 <?= !$has_prev_page ? 'disabled' : '' ?>
@@ -67,8 +67,9 @@ $found_div = ($dataCount > 0) ? "" : "unavailable";
 
                 <!-- Numerieke Pagina-knoppen - door chatgpt :D -->
                 <?php
+
                 // Definieer het bereik van pagina's dat zichtbaar moet zijn
-                $range = 10; // Hoeveel pagina's rondom de huidige pagina je wilt tonen
+                $range = 6; // Hoeveel pagina's rondom de huidige pagina je wilt tonen
                 $start = max(1, $current_page - $range); // Begin van het bereik
                 $end = min($total_pages, $current_page + $range); // Eind van het bereik
 

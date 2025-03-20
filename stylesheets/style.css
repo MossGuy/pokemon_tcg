@@ -167,7 +167,6 @@ button.active {
     width: 100vw;
     color: var(--dark);
     font-size: 30px;
-    margin-top: 2rem;
 }
 
 .p_heading {
