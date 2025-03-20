@@ -2,7 +2,7 @@
     <div class="container flex_row">
         <a class="flex_row i_center" href="./index.php">
             <img class="nav_icon" src="./images/icons/icon_1.png" alt="">
-            Pokemon TCG bibliotheek
+            <strong>Pokemon TCG bibliotheek</strong>
         </a>
         <form action="" method="POST">
             <input id="card_query" name="card_query" type="text" placeholder="Zoek een kaart">
