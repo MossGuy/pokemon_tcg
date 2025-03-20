@@ -17,7 +17,11 @@ $tcgplayer_holo = $data_parsed['tcgplayer']['prices']['holofoil']['market']??'un
 $tcgplayer_reverseholo = $data_parsed['tcgplayer']['prices']['reverseHolofoil']['market']??'unavailable';
 $cardmarket_main = $data_parsed['cardmarket']['updatedAt']??'unavailable';
 $ability = $data_parsed['abilities'][0]['name']??'unavailable';
-
+$attacks = $data_parsed['attacks'][0]['name']??'unavailable';
+$rules = 'unavailable';
+if (isset($data_parsed['rules'])) {
+ $rules = '';
+}
 
 
 echo "<pre>";
@@ -52,9 +56,9 @@ echo "</pre>";
                         </div>
                     </div>
                     <div class="flex_row gap5">
-                        <h2>HP <?=$data_parsed['hp']?></h2>
+                        <h2>HP <?=$data_parsed['hp']??''?></h2>
                         <div class="energy_type">
-                            <?=implode(", ", $data_parsed['types'])?>
+                            <?=isset($data_parsed['types'][0]) && implode(", ", $data_parsed['types']);?>
                         </div>
                     </div>
                 </nav>
@@ -164,41 +168,41 @@ echo "</pre>";
                 <section class="<?=$ability?>">
                     <p class="p_heading">abilities</p>
                     <?php
-                    if (isset($data_parsed['abilities'])) {
-                        foreach ($data_parsed['abilities'] as $a) {
-                            $name = $a['name'];
-                            $text = $a['text'];
-                            $type = $a['type'];
-
-                            echo "
-                            <h2><span class='accent'>$type:</span> $name</h2>
-                            <p>$text</p>
-                            ";
-                        }
-                    }
+                    isset($data_parsed['abilities']) && array_map(function($a) {
+                        echo "
+                        <h2><span class='accent'>{$a['type']}:</span> {$a['name']}</h2>
+                        <p>{$a['text']}</p>
+                        ";
+                    }, $data_parsed['abilities']);                    
                     ?>
                 </section>
 
-                <section>
+                <section class="<?=$rules?>">
+                    <p class="p_heading">rules</p>
+                    <p><?=$data_parsed['rules'][0]?></p><br>
+                    <p><?=$data_parsed['rules'][1]?></p>
+                </section>
+
+                <section class="<?=$attacks?>">
                     <p class="p_heading">attacks</p>
                     <table class="attacks">
                        <?php
-                        foreach($data_parsed['attacks'] as $a) {
+                        isset($data_parsed['attacks']) && array_map(function($a) {
                             $cost = implode(", ", $a['cost']);
                             $damage = $a['damage'] ?? "";
                             echo "
                             <tbody>
-                            <tr>
-                                <th>$cost</th>
-                                <th class='attack_name'>{$a['name']}</th>
-                                <th class='damage'>$damage</th>
-                            </tr>
-                            <tr>
-                                <td colspan='3'>{$a['text']}</td>
-                            </tr>
-                       </tbody>
+                                <tr>
+                                    <th>$cost</th>
+                                    <th class='attack_name'>{$a['name']}</th>
+                                    <th class='damage'>$damage</th>
+                                </tr>
+                                <tr>
+                                    <td colspan='3'>{$a['text']}</td>
+                                </tr>
+                            </tbody>
                             ";
-                        }
+                        }, $data_parsed['attacks']);                        
                        ?>
                     </table>
                 </section>
