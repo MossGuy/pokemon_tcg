@@ -14,5 +14,7 @@ stap 1 - uitlezen
 * maak een functie om een kaart te zoeken in de navbar / home pagina
 * maak de navbar / footer af
 
+* maak een V-UNION collage in de kaart_zoeken.php
+
 stap 2 - een applicatie bouwen
 ...
