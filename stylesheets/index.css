@@ -27,11 +27,31 @@ header > div {
     margin-top: 2%;
 }
 
+.zoekbalk {
+    margin-top: 6vh;
+}
+
+.zoekbalk h1 {
+    color: var(--dark);
+    font-size: 40px;
+}
+
+.zoekbalk input[type=text] {
+    border: 2px solid var(--dark);
+    border-radius: 5px;
+    padding: 5px;
+    width: 600px;
+}
+
  /* ---------- */
 /* Mediaquery */
 @media screen and (max-width: 980px) {
     header {
         aspect-ratio: 2/1;
         background-size: cover;
+    }
+
+    .zoekbalk input[type=text] {
+        width: 80%;
     }
 }

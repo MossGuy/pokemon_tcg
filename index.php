@@ -1,3 +1,4 @@
+<?php $navbar_include = "unavailable";?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -19,8 +20,11 @@
     </header>
 
     <main>
-        <section class="container">
-            
+        <section class="container zoekbalk t_center">
+            <h1>Zoek een kaart</h1>
+            <form action="" method="POST">
+                <input id="card_query" name="card_query" type="text" placeholder="" value="<?=value?>">
+            </form>
         </section>
     </main>
 

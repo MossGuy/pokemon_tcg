@@ -12,7 +12,7 @@ define("value", $_GET['query'] ?? "");
             <img class="nav_icon" src="./images/icons/icon_1.png" alt="">
             <strong>Pokemon TCG bibliotheek</strong>
         </a>
-        <form action="" method="POST">
+        <form action="" method="POST" class="<?=$navbar_include ??""?>">
             <input id="card_query" name="card_query" type="text" placeholder="Zoek een kaart" value="<?=value?>">
         </form>
         <div class="links flex_row i_center">
