@@ -201,6 +201,11 @@ button.active {
     width: 100%;
 }
 
+.type_img {
+    width: 25px;
+    aspect-ratio: 1/1;
+}
+
  /* ------- */
 /* flexbox */
 .flex_row {

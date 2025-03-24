@@ -59,9 +59,13 @@
     text-align: left;
 }
 
+.attack_cost {
+    /* width: fit-content; */
+}
+
 .attack_name {
     /*kan op 100 wanneer de attack cost images zijn */
-    width: 60%;
+    width: auto;
 }
 
 .damage {

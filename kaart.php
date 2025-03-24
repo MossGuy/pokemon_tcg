@@ -1,5 +1,6 @@
 <?php
 include "./api_key.php";
+include "./php_functies/array_to_images.php";
 if (isset($_GET['id'])) {
     define("CARD_ID", $_GET['id']);
 }
@@ -57,8 +58,8 @@ echo "</pre>";
                     </div>
                     <div class="flex_row gap5">
                         <h2>HP <?=$data_parsed['hp']??''?></h2>
-                        <div class="energy_type">
-                            <?=isset($data_parsed['types'][0]) && implode(", ", $data_parsed['types']);?>
+                        <div>
+                            <?= implode(PHP_EOL, array_to_images($data_parsed['types']));?>
                         </div>
                     </div>
                 </nav>
@@ -188,13 +189,12 @@ echo "</pre>";
                     <table class="attacks">
                        <?php
                         isset($data_parsed['attacks']) && array_map(function($a) {
-                            $cost = implode(", ", $a['cost']);
+                            $cost = implode(PHP_EOL, array_to_images($a['cost']));
                             $damage = $a['damage'] ?? "";
                             echo "
                             <tbody>
                                 <tr>
-                                    <th>$cost</th>
-                                    <th class='attack_name'>{$a['name']}</th>
+                                    <th colspan=2 class='attack_cost'>$cost {$a['name']}</th>
                                     <th class='damage'>$damage</th>
                                 </tr>
                                 <tr>
@@ -224,7 +224,7 @@ echo "</pre>";
                     </div>
                     <div>
                         <p class="p_heading">retreat cost</p>
-                        <p><?=implode(", ", $data_parsed['retreatCost'] ?? ["N/A"])?></p>
+                        <p><?=implode(PHP_EOL, array_to_images($data_parsed['retreatCost'] ?? ["N/A"]))?></p>
                     </div>
                     <div>
                         <p class="p_heading">artist</p>
