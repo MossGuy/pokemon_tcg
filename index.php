@@ -21,7 +21,7 @@
 
     <main>
         <section class="container zoekbalk t_center">
-            <h1>Zoek een kaart</h1>
+            <h2>Zoek een kaart</h2>
             <form action="" method="POST">
                 <input id="card_query" name="card_query" type="text" placeholder="" value="<?=value?>">
             </form>

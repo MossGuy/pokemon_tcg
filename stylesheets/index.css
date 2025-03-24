@@ -31,9 +31,9 @@ header > div {
     margin-top: 6vh;
 }
 
-.zoekbalk h1 {
+.zoekbalk h2 {
     color: var(--dark);
-    font-size: 40px;
+    font-size: 30px;
 }
 
 .zoekbalk input[type=text] {
