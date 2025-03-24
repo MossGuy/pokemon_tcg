@@ -4,7 +4,6 @@ https://api.pokemontcg.io/v2/cards?q=id:sv7-111
 https://pokemontcg.guru/sets
 
 TODO:
-schrijf een functie die een pokemon type als string krijgt en een image returned
 breid de zoekfunctie uit
 
 Stappenplan:
