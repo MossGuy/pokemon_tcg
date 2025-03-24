@@ -194,7 +194,7 @@ echo "</pre>";
                             echo "
                             <tbody>
                                 <tr>
-                                    <th colspan=2 class='attack_cost'>$cost {$a['name']}</th>
+                                    <th colspan=2>$cost {$a['name']}</th>
                                     <th class='damage'>$damage</th>
                                 </tr>
                                 <tr>
