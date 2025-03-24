@@ -24,6 +24,7 @@
             <h2>Zoek een kaart</h2>
             <form action="" method="POST">
                 <input id="card_query" name="card_query" type="text" placeholder="" value="<?=value?>">
+                <p>Probeer <a href="./kaarten_zoeken.php?query=mudkip">"mudkip"</a> of blader door de <a href="./sets.php">verschillende sets</a>.</p>
             </form>
         </section>
     </main>
