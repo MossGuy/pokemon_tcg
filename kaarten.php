@@ -72,6 +72,7 @@ echo '</pre>';
         <section class="card_container">
             <h1 class="set_title"><?=SET_ID?></h1>
             <?php
+            include "./site_onderdelen/kaarten_filter.php";
             for ($i = 0; $i < $totalCount; $i++) {
                 $id = $data['data'][$i]['id'];
                 $name = $data['data'][$i]['name'];

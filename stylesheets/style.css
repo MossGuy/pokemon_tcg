@@ -210,6 +210,10 @@ button.active {
     aspect-ratio: 1/1;
 }
 
+.kaarten_filter {
+    width: 100%;
+}
+
  /* ------- */
 /* flexbox */
 .flex_row {
