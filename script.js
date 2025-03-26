@@ -25,5 +25,8 @@ selectElements.forEach(select => {
     select.addEventListener('change', function() {
         console.log(select.value);
         
+        const url = window.location.href;
+
+        // window.open(url + ``, '_self');
     });
 });
