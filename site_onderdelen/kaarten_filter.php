@@ -1,4 +1,4 @@
-<div class="kaarten_filter flex_row">
+<div class="kaarten_filter flex_row i_center">
     <label for="view_as">Bekijk als: </label>
     <select name="view_as" id="view_as">
         <option value="images">Afbeeldingen</option>
