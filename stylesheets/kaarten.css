@@ -20,17 +20,28 @@
 
 /* De tabel */
 .table_section {
-
-
+    overflow-x: scroll;
     display: block;
 }
 
+.card_table {
+    border-spacing: 0;
+}
 .card_table th, .card_table td {
     text-align: left;
 }
 
 .kaarten_filter {
     margin-top: 1rem;
+}
+
+.tr_hover {
+    transition: 0.1s;
+}
+
+.tr_hover:hover {
+    background-color: var(--dark-blend);
+    cursor: pointer;
 }
 
 

@@ -6,8 +6,8 @@ if (isset($_GET['id'])) {
     define("SET_ID", $_GET['id']);
 }
 
-define("URL", "https://api.pokemontcg.io/v2/cards?q=set.id:" . SET_ID . KEY);
-// define("URL", "./test_json_bestanden/pokemon_cardset.json");
+// define("URL", "https://api.pokemontcg.io/v2/cards?q=set.id:" . SET_ID . KEY);
+define("URL", "./test_json_bestanden/pokemon_cardset.json");
 
 $response = file_get_contents(URL);
 $data = json_decode($response, true);
@@ -110,13 +110,15 @@ echo '</pre>';
                 <tbody>
                     <?php
                     for ($i = 0; $i < $totalCount; $i++) {
+                        $id = $data['data'][$i]['id'];
                         $rarity = $data['data'][$i]['rarity']??'-';
                         $types = implode(PHP_EOL, array_to_images($data['data'][$i]['types']??[]));
                         $supertypes = $data['data'][$i]['supertype']??'-';
                         $subtypes = implode(", ", $data['data'][$i]['subtypes']??['-']);
                         $sellPrice = $data['data'][$i]['cardmarket']['prices']['averageSellPrice']??'';
+                        $item_onclick = 'javascript:location.href="./kaart.php?id=' . $id . '";';
                         echo "
-                        <tr>
+                        <tr class='tr_hover' onclick='{$item_onclick}'>
                             <td>{$data['data'][$i]['set']['name']}</td>
                             <td>{$data['data'][$i]['number']}</td>
                             <td>{$data['data'][$i]['name']}</td>
@@ -130,6 +132,18 @@ echo '</pre>';
                     }
                     ?>
                 </tbody>
+                <thead>
+                    <tr>
+                        <th>Set</th>
+                        <th class="number">Nummer</th>
+                        <th>Naam</th>
+                        <th>Zeldzaamheid</th>
+                        <th>Types</th>
+                        <th>Supertype</th>
+                        <th>Subtypes</th>
+                        <th>Prijs</th>
+                    </tr>
+                </thead>
             </table>
         </section>
     </main>
