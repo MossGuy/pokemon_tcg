@@ -10,10 +10,9 @@ Stappenplan:
 
 stap 1 - uitlezen
 * geef de kaarten weergave een switch tussen afbeeldingen en tabel
-* maak een functie om een kaart te zoeken in de navbar / home pagina
-* maak de navbar / footer af
+* breid de zoek zunctie uit / fix errors
 
-* maak een V-UNION collage in de kaart_zoeken.php
+* maak een V-UNION collage in de kaart_zoeken.php (optioneel)
 
 stap 2 - een applicatie bouwen
 ...
