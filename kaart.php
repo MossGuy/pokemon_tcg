@@ -225,7 +225,7 @@ echo "</pre>";
                     </div>
                     <div>
                         <p class="p_heading">retreat cost</p>
-                        <p><?=implode(PHP_EOL, array_to_images($data_parsed['retreatCost'] ?? []))?></p>
+                        <p><?=implode(PHP_EOL, array_to_images($data_parsed['retreatCost'] ?? ['Free']))?></p>
                     </div>
                     <div>
                         <p class="p_heading">artist</p>
