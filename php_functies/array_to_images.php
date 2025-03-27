@@ -1,7 +1,7 @@
 <?php
-function array_to_images($types, $alt) {
+function array_to_images($types) {
     if (empty($types)) {
-        return [$alt];
+        return ['-'];
     }
     $images_list = [];
     foreach ($types as $type) {
