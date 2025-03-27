@@ -111,9 +111,9 @@ echo '</pre>';
                     <?php
                     for ($i = 0; $i < $totalCount; $i++) {
                         $rarity = $data['data'][$i]['rarity']??'-';
-                        $types = implode(PHP_EOL, array_to_images($data['data'][$i]['types']??[]));
+                        $types = implode(PHP_EOL, array_to_images($data['data'][$i]['types']??['-']));
                         $supertypes = $data['data'][$i]['supertype']??'-';
-                        $subtypes = implode(", ", $data['data'][$i]['subtypes']??[]);
+                        $subtypes = implode(", ", $data['data'][$i]['subtypes']??['-']);
                         $sellPrice = $data['data'][$i]['cardmarket']['prices']['averageSellPrice']??'';
                         echo "
                         <tr>
