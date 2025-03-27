@@ -12,6 +12,7 @@ $data = json_decode($response, true);
 $data_parsed = $data['data'][0];
 
 // definieer welke div de unavailable class krijgt (display: none !important;)
+$hasHP = $data_parsed['hp']??'unavailable';
 $tcgplayer_main = $data_parsed['tcgplayer']['updatedAt']??'unavailable';
 $tcgplayer_normal = $data_parsed['tcgplayer']['prices']['normal']['market']??'unavailable';
 $tcgplayer_holo = $data_parsed['tcgplayer']['prices']['holofoil']['market']??'unavailable';
@@ -56,10 +57,10 @@ echo "</pre>";
                             <h2><?=$data_parsed['supertype']?> - <?= implode(", ",$data_parsed['subtypes'])?></h2>
                         </div>
                     </div>
-                    <div class="flex_row gap5">
+                    <div class="flex_row gap5 <?=$hasHP?>">
                         <h2>HP <?=$data_parsed['hp']??''?></h2>
                         <div>
-                            <?= implode(PHP_EOL, array_to_images($data_parsed['types']));?>
+                            <?= implode(PHP_EOL, array_to_images($data_parsed['types']??[]));?>
                         </div>
                     </div>
                 </nav>
@@ -224,7 +225,7 @@ echo "</pre>";
                     </div>
                     <div>
                         <p class="p_heading">retreat cost</p>
-                        <p><?=implode(PHP_EOL, array_to_images($data_parsed['retreatCost'] ?? ["N/A"]))?></p>
+                        <p><?=implode(PHP_EOL, array_to_images($data_parsed['retreatCost'] ?? []))?></p>
                     </div>
                     <div>
                         <p class="p_heading">artist</p>
