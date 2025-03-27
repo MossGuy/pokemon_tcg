@@ -197,6 +197,10 @@ button.active {
     text-align: center;
 }
 
+.h_100 {
+    height: 100%;
+}
+
 .w_100 {
     width: 100%;
 }
@@ -211,6 +215,11 @@ button.active {
 .flex_row {
     display: flex;
     flex-direction: row;
+}
+
+.flex_column {
+    display: flex;
+    flex-direction: column;
 }
 
 .j_between {

@@ -4,17 +4,15 @@ https://api.pokemontcg.io/v2/cards?q=id:sv7-111
 https://pokemontcg.guru/sets
 
 TODO:
-schrijf een functie die een pokemon type als string krijgt en een image returned
 breid de zoekfunctie uit
 
 Stappenplan:
 
 stap 1 - uitlezen
 * geef de kaarten weergave een switch tussen afbeeldingen en tabel
-* maak een functie om een kaart te zoeken in de navbar / home pagina
-* maak de navbar / footer af
+* breid de zoek zunctie uit / fix errors
 
-* maak een V-UNION collage in de kaart_zoeken.php
+* maak een V-UNION collage in de kaart_zoeken.php (optioneel)
 
 stap 2 - een applicatie bouwen
 ...
