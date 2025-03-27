@@ -57,8 +57,8 @@ echo "</pre>";
                             <h2><?=$data_parsed['supertype']?> - <?= implode(", ",$data_parsed['subtypes'])?></h2>
                         </div>
                     </div>
-                    <div class="flex_row gap5">
-                        <h2 class="<?=$hasHP?>">HP <?=$data_parsed['hp']??''?></h2>
+                    <div class="flex_row gap5 <?=$hasHP?>">
+                        <h2>HP <?=$data_parsed['hp']??''?></h2>
                         <div>
                             <?= implode(PHP_EOL, array_to_images($data_parsed['types']??[]));?>
                         </div>
