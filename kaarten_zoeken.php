@@ -82,13 +82,15 @@ $found_div = ($dataCount > 0) ? "" : "unavailable";
                 <tbody>
                     <?php
                     for ($i = 0; $i < $dataCount; $i++) {
+                        $id = $data['data'][$i]['id'];
                         $rarity = $data['data'][$i]['rarity']??'-';
                         $types = implode(PHP_EOL, array_to_images($data['data'][$i]['types']??[]));
                         $supertypes = $data['data'][$i]['supertype']??'-';
                         $subtypes = implode(", ", $data['data'][$i]['subtypes']??[]);
                         $sellPrice = $data['data'][$i]['cardmarket']['prices']['averageSellPrice']??'';
+                        $item_onclick = 'javascript:location.href="./kaart.php?id=' . $id . '";';
                         echo "
-                        <tr>
+                        <tr class='tr_hover' onclick='{$item_onclick}'>
                             <td>{$data['data'][$i]['set']['name']}</td>
                             <td>{$data['data'][$i]['number']}</td>
                             <td>{$data['data'][$i]['name']}</td>
