@@ -15,18 +15,3 @@ function toggle_arrow_icon(id) {
     e.classList.toggle("bi-arrow-up-short");
 }
 
-
-// Selecteer het formulier met de class 'kaarten_filter'
-const form = document.querySelector('.kaarten_filter');
-const selectElements = form.querySelectorAll('select');
-
-// Voeg een event listener toe voor elke select element
-selectElements.forEach(select => {
-    select.addEventListener('change', function() {
-        console.log(select.value);
-        
-        const url = window.location.href;
-
-        // window.open(url + ``, '_self');
-    });
-});

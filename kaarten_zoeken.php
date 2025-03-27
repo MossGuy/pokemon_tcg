@@ -43,9 +43,12 @@ $found_div = ($dataCount > 0) ? "" : "unavailable";
 <body>
     <?php include "./site_onderdelen/navbar.php"?>
     <main class="container">
-        <section class="card_container <?=$found_div?>">
+        <section>
+            <?php include "./site_onderdelen/kaarten_filter.php"; ?>
+        </section>
+
+        <section class="image_section <?=$found_div?>">
             <?php
-            include "./site_onderdelen/kaarten_filter.php";
             for ($i = 0; $i < $dataCount; $i++) {
                 $id = $data['data'][$i]['id'];
                 $name = $data['data'][$i]['name'];

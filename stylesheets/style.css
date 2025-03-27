@@ -176,9 +176,9 @@ button.active {
 }
 
 .set_title {
-    width: 100vw;
     color: var(--dark);
     font-size: 30px;
+    margin-top: 1rem;
 }
 
 .p_heading {
@@ -208,10 +208,6 @@ button.active {
 .type_img {
     width: 25px;
     aspect-ratio: 1/1;
-}
-
-.kaarten_filter {
-    width: 100%;
 }
 
 .kaarten_filter select {

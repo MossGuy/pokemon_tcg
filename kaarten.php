@@ -5,8 +5,8 @@ if (isset($_GET['id'])) {
     define("SET_ID", $_GET['id']);
 }
 
-define("URL", "https://api.pokemontcg.io/v2/cards?q=set.id:" . SET_ID . KEY);
-// define("URL", "./test_json_bestanden/pokemon_cardset.json");
+// define("URL", "https://api.pokemontcg.io/v2/cards?q=set.id:" . SET_ID . KEY);
+define("URL", "./test_json_bestanden/pokemon_cardset.json");
 
 $response = file_get_contents(URL);
 $data = json_decode($response, true);
@@ -68,11 +68,15 @@ echo '</pre>';
 </head>
 <body>
     <?php include "./site_onderdelen/navbar.php"?>
-    <main class="container">
-        <section class="card_container">
+    <main class="container w_100">
+        <section>
             <h1 class="set_title"><?=SET_ID?></h1>
+            <?php include "./site_onderdelen/kaarten_filter.php"; ?>
+        </section>
+
+        <!-- afbeeldingen -->
+        <section class="image_section">
             <?php
-            include "./site_onderdelen/kaarten_filter.php";
             for ($i = 0; $i < $totalCount; $i++) {
                 $id = $data['data'][$i]['id'];
                 $name = $data['data'][$i]['name'];
@@ -85,6 +89,31 @@ echo '</pre>';
                 " . PHP_EOL;
             }
             ?>
+        </section>
+
+        <!-- tabel -->
+        <section class="table_section">
+            <table class="card_table w_100">
+                <thead>
+                    <tr>
+                        <th>Set</th>
+                        <th class="number">Nummer</th>
+                        <th>Naam</th>
+                        <th>Zeldzaamheid</th>
+                        <th>Types</th>
+                        <th>Supertype</th>
+                        <th>Subtypes</th>
+                        <th>Prijs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    for ($i = 0; $i < $totalCount; $i++) {
+                        
+                    }
+                    ?>
+                </tbody>
+            </table>
         </section>
     </main>
     <?php include "./site_onderdelen/footer.php"?>

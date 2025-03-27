@@ -41,7 +41,7 @@ foreach ($data['data'] as $serie) {
         <?php
         $count = 0;
         foreach (array_reverse($series_list) as $name => $series) {
-            echo "<h2 class='set_title'>$name</h2>";
+            echo "<h2 class='set_title w_100'>$name</h2>";
 
             foreach (array_reverse($series) as $set) {
                 $id = $set['id'];
