@@ -1,5 +1,6 @@
 <?php
 include "./api_key.php";
+include "./php_functies/array_to_images.php";
 
 $query = isset($_GET['query']) ? trim($_GET['query']) : '';
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -42,7 +43,7 @@ $found_div = ($dataCount > 0) ? "" : "unavailable";
 </head>
 <body>
     <?php include "./site_onderdelen/navbar.php"?>
-    <main class="container">
+    <main class="container w_100">
         <section>
             <?php include "./site_onderdelen/kaarten_filter.php"; ?>
         </section>
@@ -61,7 +62,51 @@ $found_div = ($dataCount > 0) ? "" : "unavailable";
                 " . PHP_EOL;
             }
             ?>
-            <div class="w_100 flex_row gap5 j_center wrap">
+        </section>
+
+        <!-- tabel -->
+        <section class="table_section">
+            <table class="card_table w_100">
+                <thead>
+                    <tr>
+                        <th>Set</th>
+                        <th class="number">Nummer</th>
+                        <th>Naam</th>
+                        <th>Zeldzaamheid</th>
+                        <th>Types</th>
+                        <th>Supertype</th>
+                        <th>Subtypes</th>
+                        <th>Prijs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    for ($i = 0; $i < $dataCount; $i++) {
+                        $rarity = $data['data'][$i]['rarity']??'-';
+                        $types = implode(PHP_EOL, array_to_images($data['data'][$i]['types']??[]));
+                        $supertypes = $data['data'][$i]['supertype']??'-';
+                        $subtypes = implode(", ", $data['data'][$i]['subtypes']??[]);
+                        $sellPrice = $data['data'][$i]['cardmarket']['prices']['averageSellPrice']??'';
+                        echo "
+                        <tr>
+                            <td>{$data['data'][$i]['set']['name']}</td>
+                            <td>{$data['data'][$i]['number']}</td>
+                            <td>{$data['data'][$i]['name']}</td>
+                            <td>$rarity</td>
+                            <td>$types</td>
+                            <td>$supertypes</td>
+                            <td>$subtypes</td>
+                            <td>$sellPrice</td>
+                        </tr>
+                        ";
+                    }
+                    ?>
+                </tbody>
+            </table>
+
+        <!-- button sectie -->
+        <section>
+        <div class="w_100 flex_row gap5 j_center wrap">
                 <!-- Vorige knop -->
                 <button 
                 <?= !$has_prev_page ? 'disabled' : '' ?>
@@ -93,6 +138,7 @@ $found_div = ($dataCount > 0) ? "" : "unavailable";
                 </button>
             </div>
         </section>
+
         <section class="t_center <?=$not_found_div?>">
             <img src="./images/confused.png" alt="">
             <h1>Hmmmmm... wij konden niks vinden met uw zoekcriteria</h1>

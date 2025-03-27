@@ -1,5 +1,6 @@
 <?php
 include "./api_key.php";
+include "./php_functies/array_to_images.php";
 
 if (isset($_GET['id'])) {
     define("SET_ID", $_GET['id']);
@@ -92,7 +93,7 @@ echo '</pre>';
         </section>
 
         <!-- tabel -->
-        <section class="table_section">
+        <section class="table_section w_100">
             <table class="card_table w_100">
                 <thead>
                     <tr>
@@ -109,7 +110,23 @@ echo '</pre>';
                 <tbody>
                     <?php
                     for ($i = 0; $i < $totalCount; $i++) {
-                        
+                        $rarity = $data['data'][$i]['rarity']??'-';
+                        $types = implode(PHP_EOL, array_to_images($data['data'][$i]['types']??[]));
+                        $supertypes = $data['data'][$i]['supertype']??'-';
+                        $subtypes = implode(", ", $data['data'][$i]['subtypes']??[]);
+                        $sellPrice = $data['data'][$i]['cardmarket']['prices']['averageSellPrice']??'';
+                        echo "
+                        <tr>
+                            <td>{$data['data'][$i]['set']['name']}</td>
+                            <td>{$data['data'][$i]['number']}</td>
+                            <td>{$data['data'][$i]['name']}</td>
+                            <td>$rarity</td>
+                            <td>$types</td>
+                            <td>$supertypes</td>
+                            <td>$subtypes</td>
+                            <td>$sellPrice</td>
+                        </tr>
+                        ";
                     }
                     ?>
                 </tbody>
