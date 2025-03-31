@@ -22,13 +22,10 @@ img_to_table.addEventListener("change", () => {
     const img = document.getElementsByClassName("image_section")[0];
     const table = document.getElementsByClassName("card_table")[0];
     
-    // Verkrijg de waarde van het geselecteerde item in img_to_table
     const viewAsValue = img_to_table.value;
-    
     if (viewAsValue === "list") {
         img.style.display = "none";
         table.style.display = "table";
-        console.log(table);
     } else {
         img.style.display = "flex";
         table.style.display = "none";
