@@ -39,7 +39,7 @@ order_by.addEventListener("change", () => {
     updateURL();
 });
 
-// WORK IN PROGRESS
+// WORK IN PROGRESS, onderzoek waar de sort_by=nummer vandaan komt in de url
 function updateURL() {
     // Verkrijg de geselecteerde waarden
     const sortBy = document.getElementById('sort_by').value ?? '';  // De waarde van sort_by, leeg als niet beschikbaar
