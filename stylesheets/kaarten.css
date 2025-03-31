@@ -23,6 +23,7 @@
 
 .card_table {
     border-spacing: 0;
+    display: none;
 }
 .card_table th, .card_table td {
     text-align: left;
