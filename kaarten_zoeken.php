@@ -2,31 +2,63 @@
 include "./api_key.php";
 include "./php_functies/array_to_images.php";
 
-$query = isset($_GET['query']) ? trim($_GET['query']) : '';
-$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-$page_size = 24;
+$query = filter_input(INPUT_GET, 'query', FILTER_SANITIZE_STRING);
+$query = trim($query);
 
-// Basisvalidatie: beperk lengte en filter gevaarlijke tekens
 if (empty($query) || strlen($query) > 100) {
     die("Ongeldige zoekopdracht.");
 }
-$query = urlencode($query); // Veilig voor URL
 
-// URL samenstellen en data ophalen
-define("URL", "https://api.pokemontcg.io/v2/cards?q=name:" . $query . KEY . "&pageSize=$page_size&page=$current_page");
-$response = file_get_contents(URL);
+$query = urlencode($query);
+$current_page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT) ?? 1;
+$page_size = 24;
+$validSortOptions = ['number', 'name', 'rarity', 'releaseDate'];
+$sort = filter_input(INPUT_GET, 'sortBy', FILTER_SANITIZE_STRING) ?? 'number';
+
+if (!in_array($sort, $validSortOptions)) {
+    $sort = 'number';
+}
+
+$order = $_GET['orderBy']??'asc';
+
+if ($sort == "releaseDate") {
+    $sort = "set.releaseDate";
+}
+
+if ($order == "desc") {
+    $sort = "-" . $sort;
+}
+
+$orderBy = filter_input(INPUT_GET, 'orderBy', FILTER_SANITIZE_STRING) ?? 'asc';
+$orderBy = ($orderBy === 'desc') ? "-{$sort}" : $sort;
+
+define("API_BASE_URL", "https://api.pokemontcg.io/v2/cards");
+
+$url = API_BASE_URL . "?q=name:$query&orderBy=$sort" . KEY . "&pageSize=$page_size&page=$current_page";
+$response = @file_get_contents($url);
+
+if ($response === FALSE) {
+    die('Fout: Kan geen gegevens ophalen van de API.');
+}
+
 $data = json_decode($response, true);
 
-// Paginering
-$total_cards = $data['totalCount'];
+if (json_last_error() !== JSON_ERROR_NONE) {
+    die('Fout: Kan JSON niet decoderen.');
+}
+
+$total_cards = $data['totalCount'] ?? 0;
 $total_pages = ceil($total_cards / $page_size);
 $has_prev_page = $current_page > 1;
 $has_next_page = $current_page < $total_pages;
 
-// .unavailable of class toekennen wanneer er geen kaarten gevonden zijn
-$dataCount = count($data['data']??0);
+$dataCount = count($data['data'] ?? []);
 $not_found_div = ($dataCount == 0) ? "" : "unavailable";
 $found_div = ($dataCount > 0) ? "" : "unavailable";
+
+echo '<pre>'; 
+// print_r($_GET);
+echo '</pre>';
 
 ?>
 <!DOCTYPE html>
