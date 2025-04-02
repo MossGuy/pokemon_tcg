@@ -7,13 +7,14 @@
 
     <label for="sort_by">Gesorteerd op: </label>
     <select name="sort_by" id="sort_by">
-        <option value="nummer">Set/Nummer</option>
-        <option value="naam">Naam</option>
+        <option value="number">Set/Nummer</option>
+        <option value="name">Naam</option>
         <option value="rarity">Zeldzaamheid</option>
-        <option value="releasedatum">Releasedatum</option>
+        <option value="releaseDate">Releasedatum</option>
     </select>
     <select name="order" id="order">
         <option value="asc">Oplopend</option>
         <option value="desc">Aflopend</option>
     </select>
 </div>
+<script src="./javascript_functies/ui_filter.js" defer></script>

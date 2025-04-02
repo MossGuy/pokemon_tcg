@@ -105,6 +105,7 @@ $found_div = ($dataCount > 0) ? "" : "unavailable";
                     ?>
                 </tbody>
             </table>
+        </section>
 
         <!-- button sectie -->
         <section>
