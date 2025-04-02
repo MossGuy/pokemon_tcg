@@ -32,45 +32,28 @@ img_to_table.addEventListener("change", () => {
     }
 });
 
+const order = document.getElementById("order");
+const sort_by = document.getElementById("sort_by");
 
-// De oplopend / aflopend toggle
-const order_by = document.getElementById("order");
-order_by.addEventListener("change", () => {
-    updateURL();
+order.addEventListener("change", () => {
+    updateURL(order.id, order.value);
 });
 
-// WORK IN PROGRESS, onderzoek waar de sort_by=nummer vandaan komt in de url
-function updateURL() {
-    // Verkrijg de geselecteerde waarden
-    const sortBy = document.getElementById('sort_by').value ?? '';  // De waarde van sort_by, leeg als niet beschikbaar
-    const order = document.getElementById('order').value ?? '';  // De waarde van order, leeg als niet beschikbaar
+sort_by.addEventListener("change", () => {
+    updateURL(sort_by.id, sort_by.value);
+});
 
-    // Maak een nieuw URLSearchParams-object met de huidige zoekparameters
+
+function updateURL(paramName, value) {
     const urlParams = new URLSearchParams(window.location.search);
+    const currentParamValue = urlParams.get(paramName) ?? '';
 
-    // Haal de huidige waarden op uit de URL
-    const currentSortBy = urlParams.get('sort_by') ?? '';
-    const currentOrder = urlParams.get('order') ?? '';
-
-    // Voeg de waarden toe, maar alleen als ze veranderd zijn ten opzichte van de huidige waarden
-    if (sortBy && sortBy !== currentSortBy) {
-        urlParams.set('sort_by', sortBy);
-    } else if (!sortBy) {
-        urlParams.delete('sort_by');  // Verwijder de parameter als deze leeg is
+    if (value && value !== currentParamValue) {
+        urlParams.set(paramName, value);
+    } else if (!value) {
+        urlParams.delete(paramName);
     }
 
-    if (order && order !== currentOrder) {
-        urlParams.set('order', order);
-    } else if (!order) {
-        urlParams.delete('order');  // Verwijder de parameter als deze leeg is
-    }
-
-    // Werk de URL bij zonder de pagina opnieuw te laden
     const updatedURL = '?' + urlParams.toString();
-
-    // Werk de browser-geschiedenis bij met de nieuwe URL
     window.history.replaceState(null, '', updatedURL);
-
-    // Optioneel: log de nieuwe URL naar de console voor debugging
-    console.log("Updated URL: " + window.location.origin + updatedURL);
 }
