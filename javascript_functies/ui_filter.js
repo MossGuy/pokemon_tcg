@@ -49,7 +49,12 @@ function update_selects() {
     const orderBy = urlParams.get("orderBy");
     const sortBy = urlParams.get("sortBy");
 
-    order.value = orderBy;
-    sort.value = sortBy;
+    if (orderBy !== null) {
+        order.value = orderBy;
+    }
+    
+    if (sortBy !== null) {
+        sort.value = sortBy;
+    }
 }
 window.onload = update_selects();
