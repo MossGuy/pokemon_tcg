@@ -16,7 +16,7 @@ img_to_table.addEventListener("change", () => {
     }
 });
 
-
+// De parameters updaten
 const order = document.getElementById("orderBy");
 order.addEventListener("change", () => {
     updateURL(order.id, order.value);
