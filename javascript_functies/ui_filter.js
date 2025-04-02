@@ -22,9 +22,9 @@ order.addEventListener("change", () => {
     updateURL(order.id, order.value);
 });
 
-const sort_by = document.getElementById("sortBy");
-sort_by.addEventListener("change", () => {
-    updateURL(sort_by.id, sort_by.value);
+const sort = document.getElementById("sortBy");
+sort.addEventListener("change", () => {
+    updateURL(sort.id, sort.value);
 });
 
 
@@ -40,4 +40,16 @@ function updateURL(paramName, value) {
 
     const updatedURL = '?' + urlParams.toString();
     window.history.replaceState(null, '', updatedURL);
+    window.location.reload();
 }
+
+// select elementen updaten met de actieve url parameters
+function update_selects() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderBy = urlParams.get("orderBy");
+    const sortBy = urlParams.get("sortBy");
+
+    order.value = orderBy;
+    sort.value = sortBy;
+}
+window.onload = update_selects();
