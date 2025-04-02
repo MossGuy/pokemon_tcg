@@ -10,7 +10,7 @@ if (empty($query) || strlen($query) > 100) {
 }
 
 $query = urlencode($query);
-$current_page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT) ?? 1;
+$current_page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT) ?? 0;
 $page_size = 24;
 $validSortOptions = ['number', 'name', 'rarity', 'releaseDate'];
 $sort = filter_input(INPUT_GET, 'sortBy', FILTER_SANITIZE_STRING) ?? 'number';
