@@ -58,3 +58,21 @@ function update_selects() {
     }
 }
 window.onload = update_selects();
+
+// De pagina switch buttons
+function page_switch(page, action, query) {
+    const orderBy = document.getElementById("orderBy").value;
+    const sortBy = document.getElementById("sortBy").value;
+
+    if (action === 'next') {
+        page++;  // Volgende pagina
+    } else if (action === 'prev') {
+        page--;  // Vorige pagina
+    } else if (typeof action === 'number') {
+        page = action;  // Specifieke pagina
+    }
+
+    const url = `kaarten_zoeken.php?query=${query}&page=${page}&orderBy=${orderBy}&sortBy=${sortBy}`;
+
+    window.location.href = url;
+}

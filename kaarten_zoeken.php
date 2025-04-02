@@ -145,7 +145,7 @@ echo '</pre>';
                 <!-- Vorige knop -->
                 <button 
                 <?= !$has_prev_page ? 'disabled' : '' ?>
-                onclick="window.location.href='./kaarten_zoeken.php?query=<?=$query?>&page=<?=$current_page - 1?>'">
+                onclick="page_switch(<?=$current_page?>, 'prev', '<?=$query?>')">
                 Vorige
                 </button>
 
@@ -160,7 +160,7 @@ echo '</pre>';
                 // Maak de pagina-nummers dynamisch
                 if ($has_next_page || $has_prev_page) {
                     for ($i = $start; $i <= $end; $i++) {
-                        echo "<button " . ($i == $current_page ? "class='active hover-style'" : "class='hover-style'") . " onclick=\"window.location.href='?query=$query&page=$i'\">$i</button>";
+                        echo "<button " . ($i == $current_page ? "class='active hover-style'" : "class='hover-style'") . " onclick=\"page_switch($current_page, $i, '$query')\">$i</button>";
                     }
                 }
                 ?>
@@ -168,7 +168,7 @@ echo '</pre>';
                 <!-- Volgende knop -->
                 <button 
                 <?= !$has_next_page ? 'disabled' : '' ?>
-                onclick="window.location.href='./kaarten_zoeken.php?query=<?=$query?>&page=<?=$current_page + 1?>'">
+                onclick="page_switch(<?=$current_page?>, 'next', '<?=$query?>')">
                 Volgende
                 </button>
             </div>
