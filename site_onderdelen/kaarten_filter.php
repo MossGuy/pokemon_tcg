@@ -6,13 +6,13 @@
     </select>
 
     <label for="sort_by">Gesorteerd op: </label>
-    <select name="sort_by" id="sort_by">
+    <select name="sortBy" id="sortBy">
         <option value="number">Set/Nummer</option>
         <option value="name">Naam</option>
         <option value="rarity">Zeldzaamheid</option>
         <option value="releaseDate">Releasedatum</option>
     </select>
-    <select name="order" id="order">
+    <select name="orderBy" id="orderBy">
         <option value="asc">Oplopend</option>
         <option value="desc">Aflopend</option>
     </select>

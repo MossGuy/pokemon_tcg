@@ -17,12 +17,12 @@ img_to_table.addEventListener("change", () => {
 });
 
 
-const order = document.getElementById("order");
+const order = document.getElementById("orderBy");
 order.addEventListener("change", () => {
     updateURL(order.id, order.value);
 });
 
-const sort_by = document.getElementById("sort_by");
+const sort_by = document.getElementById("sortBy");
 sort_by.addEventListener("change", () => {
     updateURL(sort_by.id, sort_by.value);
 });
