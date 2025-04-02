@@ -5,7 +5,7 @@ include "./php_functies/array_to_images.php";
 $query = filter_input(INPUT_GET, 'query', FILTER_SANITIZE_STRING);
 $query = trim($query);
 
-if (empty($query) || strlen($query) > 100) {
+if (empty($query) || strlen($query) > 60) {
     die("Ongeldige zoekopdracht.");
 }
 
@@ -14,12 +14,11 @@ $current_page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT) ?? 1;
 $page_size = 24;
 $validSortOptions = ['number', 'name', 'rarity', 'releaseDate'];
 $sort = filter_input(INPUT_GET, 'sortBy', FILTER_SANITIZE_STRING) ?? 'number';
+$order = $_GET['orderBy']??'asc';
 
 if (!in_array($sort, $validSortOptions)) {
     $sort = 'number';
 }
-
-$order = $_GET['orderBy']??'asc';
 
 if ($sort == "releaseDate") {
     $sort = "set.releaseDate";
@@ -28,9 +27,6 @@ if ($sort == "releaseDate") {
 if ($order == "desc") {
     $sort = "-" . $sort;
 }
-
-$orderBy = filter_input(INPUT_GET, 'orderBy', FILTER_SANITIZE_STRING) ?? 'asc';
-$orderBy = ($orderBy === 'desc') ? "-{$sort}" : $sort;
 
 define("API_BASE_URL", "https://api.pokemontcg.io/v2/cards");
 

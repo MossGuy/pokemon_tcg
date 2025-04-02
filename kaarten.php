@@ -4,12 +4,30 @@ include "./php_functies/array_to_images.php";
 
 if (isset($_GET['id'])) {
     define("SET_ID", $_GET['id']);
+} else {
+    die("Geen id meegegeven");
 }
 
-define("URL", "https://api.pokemontcg.io/v2/cards?q=set.id:" . SET_ID . KEY);
+$validSortOptions = ['number', 'name', 'rarity', 'releaseDate'];
+$sort = filter_input(INPUT_GET, 'sortBy', FILTER_SANITIZE_STRING) ?? 'number';
+$order = $_GET['orderBy']??'asc';
+
+if (!in_array($sort, $validSortOptions)) {
+    $sort = 'number';
+}
+
+if ($sort == "releaseDate") {
+    $sort = "set.releaseDate";
+}
+
+if ($order == "desc") {
+    $sort = "-" . $sort;
+}
+define("API_BASE_URL", "https://api.pokemontcg.io/v2/cards");
+$url = API_BASE_URL . "?q=set.id:" . SET_ID . "&orderBy=$sort" . KEY;
 // define("URL", "./test_json_bestanden/pokemon_cardset.json");
 
-$response = file_get_contents(URL);
+$response = file_get_contents($url);
 $data = json_decode($response, true);
 $totalCount = count($data['data']);
 
@@ -28,25 +46,25 @@ function extract_numeric_id($card) {
 }
 
 // Sorteer de kaarten correct
-try {
-    usort($data['data'], function($a, $b) {
-        [$prefix_a, $num_a, $suffix_a] = extract_numeric_id($a);
-        [$prefix_b, $num_b, $suffix_b] = extract_numeric_id($b);
+// try {
+//     usort($data['data'], function($a, $b) {
+//         [$prefix_a, $num_a, $suffix_a] = extract_numeric_id($a);
+//         [$prefix_b, $num_b, $suffix_b] = extract_numeric_id($b);
 
-        // Vergelijk eerst op prefix (bijv. "TG" < "sv8")
-        if ($prefix_a !== $prefix_b) {
-            return strcmp($prefix_a, $prefix_b);
-        }
+//         // Vergelijk eerst op prefix (bijv. "TG" < "sv8")
+//         if ($prefix_a !== $prefix_b) {
+//             return strcmp($prefix_a, $prefix_b);
+//         }
 
-        // Vergelijk dan op het numerieke gedeelte
-        if ($num_a !== $num_b) {
-            return $num_a - $num_b;
-        }
+//         // Vergelijk dan op het numerieke gedeelte
+//         if ($num_a !== $num_b) {
+//             return $num_a - $num_b;
+//         }
 
-        // Vergelijk als laatste op het achtervoegsel (bijv. "75a" < "75b")
-        return strcmp($suffix_a, $suffix_b);
-    });
-} catch (Exception $e) {}
+//         // Vergelijk als laatste op het achtervoegsel (bijv. "75a" < "75b")
+//         return strcmp($suffix_a, $suffix_b);
+//     });
+// } catch (Exception $e) {}
 
 
 
