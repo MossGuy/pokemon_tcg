@@ -7,7 +7,6 @@ define("SERIES", [
 ]);
 
 define("URL", "https://api.pokemontcg.io/v2/sets?" . KEY);
-// define("URL", "./test_json_bestanden/pokemon_sets.json");
 
 $response = file_get_contents(URL);
 $data = json_decode($response, true);
@@ -54,7 +53,9 @@ foreach ($data['data'] as $set) {
             if (count($series_list[$name]) > 0) {
                 echo "<h2 class='set_title w_100'>$name</h2>";
 
-                foreach ($series_list[$name] as $set) {
+                $reversed_sets = array_reverse($series_list[$name]);
+                
+                foreach ($reversed_sets as $set) {
                     $id = $set['id'];
                     $name = $set['name'];
                     $logo = $set['images']['logo'];
