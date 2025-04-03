@@ -1,25 +1,35 @@
 <?php
-include "./api_key.php";
+require_once "./api_key.php";
 
 define("SERIES", [
     "Scarlet & Violet", "Sword & Shield", "Other", "Sun & Moon", "XY", "Black & White",
     "HeartGold & SoulSilver", "Platinum", "POP", "Diamond & Pearl", "EX", "NP", "E-Card", "NEO", "Gym", "Base"
 ]);
 
-// define("URL", "https://api.pokemontcg.io/v2/sets?" . KEY);
-define("URL", "./test_json_bestanden/pokemon_sets.json");
+define("URL", "https://api.pokemontcg.io/v2/sets?" . KEY);
+// define("URL", "./test_json_bestanden/pokemon_sets.json");
 
 $response = file_get_contents(URL);
 $data = json_decode($response, true);
 
-// sorteer alle sets per serie in een nieuwe array
+// Groepeer de sets op basis van series zoals in SERIES gedefinieerd
 $series_list = [];
-foreach ($data['data'] as $serie) {
-    $serieName = $serie['series'];
-    if (isset($series_list[$serieName])) {
-        array_push($series_list[$serieName], $serie);
+
+// Initialiseer lege arrays voor elke serie in SERIES
+foreach (SERIES as $serie) {
+    $series_list[$serie] = [];
+}
+
+// Voeg de sets toe aan de juiste serie
+foreach ($data['data'] as $set) {
+    $serieName = $set['series'];
+
+    // Zorg ervoor dat de serie in de SERIES array staat
+    if (in_array($serieName, SERIES)) {
+        $series_list[$serieName][] = $set;
     } else {
-        $series_list[$serieName][] = $serie;
+        // Zet sets die geen serie hebben in de 'Other' categorie
+        $series_list['Other'][] = $set;
     }
 }
 ?>
@@ -39,47 +49,49 @@ foreach ($data['data'] as $serie) {
     <main class="container">
         <div class="set_container">
         <?php
-        $count = 0;
-        foreach (array_reverse($series_list) as $name => $series) {
-            echo "<h2 class='set_title w_100'>$name</h2>";
+        foreach (SERIES as $name) {
+            // Controleer of er sets zijn voor deze serie
+            if (count($series_list[$name]) > 0) {
+                echo "<h2 class='set_title w_100'>$name</h2>";
 
-            foreach (array_reverse($series) as $set) {
-                $id = $set['id'];
-                $name = $set['name'];
-                $logo = $set['images']['logo'];
-                $symbol = $set['images']['symbol'];
-                $date = $set['releaseDate'];
-                $series_json = $set['series'];
+                foreach ($series_list[$name] as $set) {
+                    $id = $set['id'];
+                    $name = $set['name'];
+                    $logo = $set['images']['logo'];
+                    $symbol = $set['images']['symbol'];
+                    $date = $set['releaseDate'];
+                    $series_json = $set['series'];
 
-                $standard_legal = isset($set['legalities']['standard']) ? "<li>Standard {$set['legalities']['standard']}</li>" : '';
-                $expanded_legal = isset($set['legalities']['expanded']) ? "<li>Expanded {$set['legalities']['expanded']}</li>" : '';
+                    $standard_legal = isset($set['legalities']['standard']) ? "<li>Standard {$set['legalities']['standard']}</li>" : '';
+                    $expanded_legal = isset($set['legalities']['expanded']) ? "<li>Expanded {$set['legalities']['expanded']}</li>" : '';
 
-                echo "
-                <a class='card' href='./kaarten.php?id=$id'>
-                <figure class='card_image'>
-                    <img src='$logo' alt='$name'>
-                </figure>
-                <div class='card_content'>
-                    <div class='media'>
-                        <div class='media_left'>
-                            <figure class='symbol'>
-                                <img src='$symbol' alt='$name'>
-                            </figure>
+                    echo "
+                    <a class='card' href='./kaarten.php?id=$id'>
+                    <figure class='card_image'>
+                        <img src='$logo' alt='$name'>
+                    </figure>
+                    <div class='card_content'>
+                        <div class='media'>
+                            <div class='media_left'>
+                                <figure class='symbol'>
+                                    <img src='$symbol' alt='$name'>
+                                </figure>
+                            </div>
+                            <div class='media_content'>
+                                <h2>$name</h2>
+                                <p>Uitkomstdatum: $date</p>
+                            </div>
                         </div>
-                        <div class='media_content'>
-                            <h2>$name</h2>
-                            <p>Uitkomstdatum: $date</p>
+                        <div class='content'>
+                            <ul>
+                                $standard_legal
+                                $expanded_legal
+                            </ul>
                         </div>
                     </div>
-                    <div class='content'>
-                        <ul>
-                            $standard_legal
-                            $expanded_legal
-                        </ul>
-                    </div>
-                </div>
-            </a>
-                ";
+                </a>
+                    ";
+                }
             }
         }
         ?>
