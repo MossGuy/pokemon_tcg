@@ -7,6 +7,8 @@ $query = filter_input(INPUT_GET, 'query', FILTER_SANITIZE_STRING);
 if (empty($query) || strlen($query) > 60) {
     die("Ongeldige zoekopdracht.");
 }
+
+$query = htmlspecialchars($query, ENT_QUOTES, 'UTF-8');
 $query = trim($query);
 $query = urlencode($query);
 
@@ -30,16 +32,17 @@ if ($order == "desc") {
 // De api url maken, aanroepen en valideren
 $api_base_url = "https://api.pokemontcg.io/v2/cards";
 $url ="$api_base_url?q=name:$query&orderBy=$sort" . KEY . "&pageSize=$page_size&page=$current_page";
-$response = @file_get_contents($url);
-if ($response === FALSE) {
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$response = curl_exec($ch);
+if (curl_errno($ch)) {
     die('Fout: Kan geen gegevens ophalen van de API, probeer het nog een keer.');
 }
+curl_close($ch);
 
 $data = json_decode($response, true);
-
-if (json_last_error() !== JSON_ERROR_NONE) {
-    die('Fout: Kan JSON niet decoderen.');
-}
+$totalCount = count($data['data']);
 
 $total_cards = $data['totalCount'] ?? 0;
 $total_pages = ceil($total_cards / $page_size);
@@ -65,7 +68,7 @@ echo '</pre>';
     <link rel="stylesheet" href="./stylesheets/kaarten.css">
     <script src="./script.js" defer></script>
     
-    <title>Pokémon tcg api</title>
+    <title>Pokémon TCG - Zoekresultaten</title>
 </head>
 <body>
     <?php include "./site_onderdelen/navbar.php"?>

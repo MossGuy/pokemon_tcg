@@ -31,10 +31,14 @@ $api_base_url = "https://api.pokemontcg.io/v2/cards";
 $url = "$api_base_url?q=set.id:" . SET_ID . "&orderBy=$sort" . KEY;
 // define("URL", "./test_json_bestanden/pokemon_cardset.json");
 
-$response = file_get_contents($url);
-if ($response === FALSE) {
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$response = curl_exec($ch);
+if (curl_errno($ch)) {
     die('Fout: Kan geen gegevens ophalen van de API, probeer het nog een keer.');
 }
+curl_close($ch);
+
 $data = json_decode($response, true);
 $totalCount = count($data['data']);
 
