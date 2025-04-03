@@ -5,9 +5,13 @@ if (isset($_GET['id'])) {
     define("CARD_ID", $_GET['id']);
 }
 
+// De api url maken, aanroepen en valideren
 define("URL", "https://api.pokemontcg.io/v2/cards?q=id:" . CARD_ID . KEY);
 // define("URL", "./test_json_bestanden/pokemon_card.json");
 $response = file_get_contents(URL);
+if ($response === FALSE) {
+    die('Fout: Kan geen gegevens ophalen van de API, probeer het nog een keer.');
+}
 $data = json_decode($response, true);
 $data_parsed = $data['data'][0];
 
@@ -20,15 +24,9 @@ $tcgplayer_reverseholo = $data_parsed['tcgplayer']['prices']['reverseHolofoil'][
 $cardmarket_main = $data_parsed['cardmarket']['updatedAt']??'unavailable';
 $ability = $data_parsed['abilities'][0]['name']??'unavailable';
 $attacks = $data_parsed['attacks'][0]['name']??'unavailable';
-$rules = 'unavailable';
-if (isset($data_parsed['rules'])) {
- $rules = '';
-}
+$rules = isset($data_parsed['rules']) ? '' : 'unavailable';
 
 
-echo "<pre>";
-// print_r($data_parsed);
-echo "</pre>";
 ?>
 
 <!DOCTYPE html>

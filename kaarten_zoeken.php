@@ -2,14 +2,15 @@
 include "./api_key.php";
 include "./php_functies/array_to_images.php";
 
+// De gebruikers input ophalen en valideren
 $query = filter_input(INPUT_GET, 'query', FILTER_SANITIZE_STRING);
-$query = trim($query);
-
 if (empty($query) || strlen($query) > 60) {
     die("Ongeldige zoekopdracht.");
 }
-
+$query = trim($query);
 $query = urlencode($query);
+
+// Sorteer en pagina nummer variabelen aanroepen en bewerken
 $current_page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT) ?? 1;
 $page_size = 24;
 $validSortOptions = ['number', 'name', 'rarity', 'releaseDate'];
@@ -19,22 +20,19 @@ $order = $_GET['orderBy']??'asc';
 if (!in_array($sort, $validSortOptions)) {
     $sort = 'number';
 }
-
 if ($sort == "releaseDate") {
     $sort = "set.releaseDate";
 }
-
 if ($order == "desc") {
     $sort = "-" . $sort;
 }
 
-define("API_BASE_URL", "https://api.pokemontcg.io/v2/cards");
-
-$url = API_BASE_URL . "?q=name:$query&orderBy=$sort" . KEY . "&pageSize=$page_size&page=$current_page";
+// De api url maken, aanroepen en valideren
+$api_base_url = "https://api.pokemontcg.io/v2/cards";
+$url ="$api_base_url?q=name:$query&orderBy=$sort" . KEY . "&pageSize=$page_size&page=$current_page";
 $response = @file_get_contents($url);
-
 if ($response === FALSE) {
-    die('Fout: Kan geen gegevens ophalen van de API.');
+    die('Fout: Kan geen gegevens ophalen van de API, probeer het nog een keer.');
 }
 
 $data = json_decode($response, true);
