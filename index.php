@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO tags, bedacht door chatGPT :D -->
+    <meta name="description" content="Zoek en bekijk Pokémon kaarten uit verschillende sets">
+    <meta name="keywords" content="Pokémon, kaarten, tcg, set, nummer, naam, zeldzaamheid">
+
     <link rel="stylesheet" href="./stylesheets/style.css">
     <link rel="stylesheet" href="./stylesheets/index.css">
     <script src="./script.js" defer></script>
