@@ -60,7 +60,7 @@ $totalCount = count($data['data']);
     <main class="container w_100">
         <section>
             <h1 class="set_title"><?=SET_ID?></h1>
-            <?php include "./site_onderdelen/kaarten_filter.php"; ?>
+            <?php include "./site_onderdelen/sorteer_ui.php"; ?>
         </section>
 
         <!-- afbeeldingen -->

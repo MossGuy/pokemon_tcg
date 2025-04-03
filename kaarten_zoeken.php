@@ -70,7 +70,7 @@ $found_div = ($dataCount > 0) ? "" : "unavailable";
     <?php include "./site_onderdelen/navbar.php"?>
     <main class="container w_100">
         <section>
-            <?php include "./site_onderdelen/kaarten_filter.php"; ?>
+            <?php include "./site_onderdelen/sorteer_ui.php"; ?>
         </section>
 
         <section class="image_section <?=$found_div?>">

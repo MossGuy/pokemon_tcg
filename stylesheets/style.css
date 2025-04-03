@@ -210,14 +210,6 @@ button.active {
     aspect-ratio: 1/1;
 }
 
-.kaarten_filter select {
-    /* background-color: #387478; */
-    padding: 5px;
-    margin: 0 5px;
-    border: 2px solid var(--dark);
-    border-radius: 5px;
-}
-
  /* ------- */
 /* flexbox */
 .flex_row {
