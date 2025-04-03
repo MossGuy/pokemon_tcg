@@ -1,6 +1,6 @@
 <?php
-include "./api_key.php";
-include "./php_functies/array_to_images.php";
+require_once "./api_key.php";
+require_once "./php_functies/array_to_images.php";
 
 // De gebruikers input ophalen en valideren
 $query = filter_input(INPUT_GET, 'query', FILTER_SANITIZE_STRING);
@@ -52,10 +52,6 @@ $has_next_page = $current_page < $total_pages;
 $dataCount = count($data['data'] ?? []);
 $not_found_div = ($dataCount == 0) ? "" : "unavailable";
 $found_div = ($dataCount > 0) ? "" : "unavailable";
-
-echo '<pre>'; 
-// print_r($_GET);
-echo '</pre>';
 
 ?>
 <!DOCTYPE html>

@@ -1,6 +1,6 @@
 <?php
-include "./api_key.php";
-include "./php_functies/array_to_images.php";
+require_once "./api_key.php";
+require_once "./php_functies/array_to_images.php";
 
 // Set id validatie
 if (isset($_GET['id'])) {
