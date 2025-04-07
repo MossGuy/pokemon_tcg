@@ -133,7 +133,7 @@ $found_div = ($dataCount > 0) ? "" : "unavailable";
         </section>
 
         <!-- button sectie -->
-        <section>
+        <section class="<?=$found_div?>">
         <div class="w_100 flex_row gap5 j_center wrap">
                 <!-- Vorige knop -->
                 <button 
