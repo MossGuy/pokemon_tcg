@@ -9,7 +9,6 @@ breid de zoekfunctie uit
 Stappenplan:
 
 stap 1 - uitlezen
-* geef de kaarten weergave een switch tussen afbeeldingen en tabel
 * breid de zoek zunctie uit / fix errors
 
 * maak een V-UNION collage in de kaart_zoeken.php (optioneel)
