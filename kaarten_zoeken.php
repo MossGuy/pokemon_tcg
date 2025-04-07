@@ -42,7 +42,7 @@ if (curl_errno($ch)) {
 curl_close($ch);
 
 $data = json_decode($response, true);
-$totalCount = count($data['data']);
+$totalCount = count($data['data']??[]);
 
 $total_cards = $data['totalCount'] ?? 0;
 $total_pages = ceil($total_cards / $page_size);
