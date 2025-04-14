@@ -130,6 +130,7 @@ h2 {
 a {
     text-decoration: none;
     color: var(--dark);
+    margin: 0 0.3rem;
 }
 
 a:hover {

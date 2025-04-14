@@ -16,7 +16,8 @@ define("value", $_GET['query'] ?? "");
             <input id="card_query" name="card_query" type="text" placeholder="Zoek een kaart" value="<?=value?>">
         </form>
         <div class="links flex_row i_center">
-            <a href="./sets.php">Sets</a>
+            <p><a href="./sets.php">Sets</a></p>
+            <p><a href="./api_debug.php">API Debug</a></p>
         </div>
     </div>
 </nav>

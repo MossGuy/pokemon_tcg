@@ -1,6 +1,7 @@
 <?php
 require_once "./api_key.php";
 require_once "./php_functies/array_to_images.php";
+require_once "./php_functies/api_check.php";
 
 // De gebruikers input ophalen en valideren
 $query = filter_input(INPUT_GET, 'query', FILTER_SANITIZE_STRING);
@@ -33,16 +34,16 @@ if ($order == "desc") {
 $api_base_url = "https://api.pokemontcg.io/v2/cards";
 $url ="$api_base_url?q=name:$query&orderBy=$sort" . KEY . "&pageSize=$page_size&page=$current_page";
 
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$response = curl_exec($ch);
-if (curl_errno($ch)) {
-    die('Fout: Kan geen gegevens ophalen van de API, probeer het nog een keer.');
-}
-curl_close($ch);
+// TODO: vergelijk de api aanroep met de andere en vervang de oude --
+$result = fetch_from_api($url);
 
-$data = json_decode($response, true);
-$totalCount = count($data['data']??[]);
+if (!$result['success']) {
+    die("Fout bij ophalen van API-data: " . $result['error']);
+}
+
+$data = $result['data'];
+$totalCount = count($data['data'] ?? []);
+// tot hier --
 
 $total_cards = $data['totalCount'] ?? 0;
 $total_pages = ceil($total_cards / $page_size);
