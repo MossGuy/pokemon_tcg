@@ -3,14 +3,30 @@ require_once "./api_key.php";
 require_once "./php_functies/array_to_images.php";
 
 // De gebruikers input ophalen en valideren
-$query = filter_input(INPUT_GET, 'query', FILTER_SANITIZE_STRING);
+$query_raw = filter_input(INPUT_GET, 'query', FILTER_UNSAFE_RAW);
+$query = trim($query_raw);
+
+// Max lengte en lege check
 if (empty($query) || strlen($query) > 60) {
     die("Ongeldige zoekopdracht.");
 }
 
-$query = htmlspecialchars($query, ENT_QUOTES, 'UTF-8');
-$query = trim($query);
-$query = urlencode($query);
+// Speciale Lucene leestekens (die toegestaan zijn)
+$allowed_special_chars = ['+', '-', '&&', '||', '!', '(', ')', '{', '}', '[', ']', '^', '"', '~', '*', '?', ':', '\\'];
+
+// Controle of de query een van deze leestekens bevat
+$contains_special_chars = false;
+foreach ($allowed_special_chars as $char) {
+    // Let op: sommige zoals \ moeten geëscapet worden
+    if (strpos($query, $char) !== false) {
+        $contains_special_chars = true;
+        break;
+    }
+}
+
+// Escapen van query voor veilige API-aanroep (optioneel bij Lucene, hangt af van gebruik)
+$query_encoded = urlencode($query);
+
 
 // Sorteer en pagina nummer variabelen aanroepen en bewerken
 $current_page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT) ?? 1;
@@ -30,8 +46,15 @@ if ($order == "desc") {
 }
 
 // De api url maken, aanroepen en valideren
+$url = '';
 $api_base_url = "https://api.pokemontcg.io/v2/cards";
-$url ="$api_base_url?q=name:$query&orderBy=$sort" . KEY . "&pageSize=$page_size&page=$current_page";
+if ($contains_special_chars) {
+    // Gebruik Lucene zoals het is, hele query is al goed opgebouwd
+    $url = "$api_base_url?q=$query_encoded&orderBy=$sort" . KEY . "&pageSize=$page_size&page=$current_page";
+} else {
+    // Simpele zoekopdracht op alleen de naam
+    $url = "$api_base_url?q=name:$query_encoded&orderBy=$sort" . KEY . "&pageSize=$page_size&page=$current_page";
+}
 
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
