@@ -10,6 +10,8 @@ Stappenplan:
 
 stap 1 - uitlezen
 * breid de zoek zunctie uit / fix errors
+* maak een webside voor als de api niet beschikbaar is
+
 
 * maak een V-UNION collage in de kaart_zoeken.php (optioneel)
 
