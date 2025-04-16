@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="./stylesheets/style.css">
     <link rel="stylesheet" href="./stylesheets/index.css">
     <script src="./script.js" defer></script>
+    <style>
+        main .container {
+            margin: 2rem auto;
+        }
+    </style>
     <title>Pokémon TCG</title>
 </head>
 <body>
@@ -21,6 +26,22 @@
     <main>
         <section class="container">
             <h1>Syntax handleiding</h1>
+            <p>
+                De pokemon kaarten bibliotheek heeft verschillende manieren om data op te vragen.
+                Om complexe queries (zoek opdrachten) te maken, heb je twee opties:
+            </p>
+        </section>
+        <section class="container">
+            <h1>Optie 1: het geavanceerde zoek formulier</h1>
+            <p>
+                
+            </p>
+        </section>
+        <section class="container">
+            <h1>De geavanceerde query syntax</h1>
+            <p>
+                
+            </p>
         </section>
     </main>
 
