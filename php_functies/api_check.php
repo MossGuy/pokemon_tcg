@@ -1,5 +1,4 @@
 <?php
-
 function fetch_from_api($url)
 {
     $ch = curl_init($url);
@@ -40,5 +39,4 @@ function fetch_from_api($url)
         'data' => $data
     ];
 }
-
 ?>

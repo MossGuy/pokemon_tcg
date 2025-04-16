@@ -1,6 +1,7 @@
 <?php
 require_once "./api_key.php";
 require_once "./php_functies/array_to_images.php";
+require_once "./php_functies/api_check.php";
 if (isset($_GET['id'])) {
     define("CARD_ID", $_GET['id']);
 }
@@ -8,16 +9,13 @@ if (isset($_GET['id'])) {
 // De api url maken, aanroepen en valideren
 $api_base_url = "https://api.pokemontcg.io/v2/cards";
 $url = "$api_base_url?q=id:" . CARD_ID . KEY;
-// verwijderen pls define("URL", "https://api.pokemontcg.io/v2/cards?q=id:" . CARD_ID . KEY);
 // define("URL", "./test_json_bestanden/pokemon_card.json");
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$response = curl_exec($ch);
-if (curl_errno($ch)) {
-    die('Fout: Kan geen gegevens ophalen van de API, probeer het nog een keer.');
+$result = fetch_from_api($url);
+if (!$result['success']) {
+    die("Fout bij ophalen van API-data: " . $result['error'] . PHP_EOL . "Ververs de pagina om het nog een keer te proberen.");
 }
-curl_close($ch);
-$data = json_decode($response, true);
+
+$data = $result['data'];
 $data_parsed = $data['data'][0];
 
 // definieer welke div de unavailable class krijgt (display: none !important;)

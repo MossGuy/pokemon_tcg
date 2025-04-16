@@ -1,15 +1,19 @@
 <?php
 require_once "./api_key.php";
+require_once "./php_functies/api_check.php";
 
 define("SERIES", [
     "Scarlet & Violet", "Sword & Shield", "Other", "Sun & Moon", "XY", "Black & White",
     "HeartGold & SoulSilver", "Platinum", "POP", "Diamond & Pearl", "EX", "NP", "E-Card", "NEO", "Gym", "Base"
 ]);
 
-define("URL", "https://api.pokemontcg.io/v2/sets?" . KEY);
+$url = "https://api.pokemontcg.io/v2/sets?" . KEY;
 
-$response = file_get_contents(URL);
-$data = json_decode($response, true);
+$result = fetch_from_api($url);
+if (!$result['success']) {
+    die("Fout bij ophalen van API-data: " . $result['error'] . PHP_EOL . "Ververs de pagina om het nog een keer te proberen.");
+}
+$data = $result['data'];
 
 // Groepeer de sets op basis van series zoals in SERIES gedefinieerd
 $series_list = [];
