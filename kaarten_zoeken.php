@@ -59,9 +59,8 @@ if ($contains_special_chars) {
 
 // TODO: vergelijk de api aanroep met de andere en vervang de oude --
 $result = fetch_from_api($url);
-
 if (!$result['success']) {
-    die("Fout bij ophalen van API-data: " . $result['error']);
+    die("Fout bij ophalen van API-data: " . $result['error'] . PHP_EOL . "Ververs de pagina om het nog een keer te proberen.");
 }
 
 $data = $result['data'];
