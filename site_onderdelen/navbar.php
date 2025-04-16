@@ -15,9 +15,9 @@ define("value", $_GET['query'] ?? "");
         <form action="" method="POST" class="<?=$navbar_include ??""?>">
             <input id="card_query" name="card_query" type="text" placeholder="Zoek een kaart" value="<?=value?>">
         </form>
-        <div class="links flex_row i_center">
-            <p><a href="./sets.php">Sets</a></p>
-            <p><a href="./api_debug.php">API Debug</a></p>
+        <div class="links flex_row">
+            <a href="./sets.php">Sets</a>
+            <a href="./api_debug.php">API Debug</a>
         </div>
     </div>
 </nav>
