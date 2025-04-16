@@ -87,8 +87,8 @@ $totalCount = count($data['data']);
         </section>
 
         <!-- tabel -->
-        <section class="table_section w_100">
-            <table class="card_table w_100">
+        <section class="table_section">
+            <table class="card_table center">
                 <thead>
                     <tr>
                         <th>Set</th>

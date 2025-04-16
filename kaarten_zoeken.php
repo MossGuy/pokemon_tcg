@@ -27,6 +27,8 @@ foreach ($allowed_special_chars as $char) {
 
 // Escapen van query voor veilige API-aanroep (optioneel bij Lucene, hangt af van gebruik)
 $query_encoded = urlencode($query);
+$query_encoded = urlencode(str_replace(' ', '*', $query));
+
 
 
 // Sorteer en pagina nummer variabelen aanroepen en bewerken
@@ -54,13 +56,13 @@ if ($contains_special_chars) {
     $url = "$api_base_url?q=$query_encoded&orderBy=$sort" . KEY . "&pageSize=$page_size&page=$current_page";
 } else {
     // Simpele zoekopdracht op alleen de naam
-    $url = "$api_base_url?q=name:$query_encoded&orderBy=$sort" . KEY . "&pageSize=$page_size&page=$current_page";
+    $url = "$api_base_url?q=name:$query_encoded*&orderBy=$sort" . KEY . "&pageSize=$page_size&page=$current_page";
 }
 
 // TODO: vergelijk de api aanroep met de andere en vervang de oude --
 $result = fetch_from_api($url);
 if (!$result['success']) {
-    die("Fout bij ophalen van API-data: " . $result['error'] . PHP_EOL . "Ververs de pagina om het nog een keer te proberen.");
+    die("Fout bij ophalen van API-data: {$result['error']}. Probeer het nog een keer.");
 }
 
 $data = $result['data'];
@@ -102,6 +104,7 @@ $found_div = ($dataCount > 0) ? "" : "unavailable";
             <?php include "./site_onderdelen/sorteer_ui.php"; ?>
         </section>
 
+        <!-- afbeeldingen -->
         <section class="image_section <?=$found_div?>">
             <?php
             for ($i = 0; $i < $dataCount; $i++) {
@@ -120,7 +123,7 @@ $found_div = ($dataCount > 0) ? "" : "unavailable";
 
         <!-- tabel -->
         <section class="table_section">
-            <table class="card_table w_100">
+            <table class="card_table center">
                 <thead>
                     <tr>
                         <th>Set</th>

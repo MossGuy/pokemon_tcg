@@ -78,7 +78,7 @@ foreach ($data['data'] as $set) {
                     <figure class='card_image'>
                         <img src='$logo' alt='$name'>
                     </figure>
-                    <div class='card_content'>
+                    <div class='card_content optional'>
                         <div class='media'>
                             <div class='media_left'>
                                 <figure class='symbol'>

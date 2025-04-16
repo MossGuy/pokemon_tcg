@@ -5,7 +5,7 @@
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 15px;
     margin: 0 1rem;
 }
 
@@ -67,7 +67,14 @@
 /* Mediaquery */
 @media screen and (max-width: 980px) {
     .set_container {
-        justify-content: center;
         text-align: center;
+        justify-content: center;
+    }
+    .card {
+        width: 200px;
+        height: 200px;
+    }
+    .optional {
+        display: none;
     }
 }

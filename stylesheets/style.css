@@ -196,6 +196,11 @@ button.active {
     color: var(--accent);
 }
 
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .t_center {
     text-align: center;
 }
