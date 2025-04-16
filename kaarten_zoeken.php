@@ -59,7 +59,6 @@ if ($contains_special_chars) {
     $url = "$api_base_url?q=name:$query_encoded*&orderBy=$sort" . KEY . "&pageSize=$page_size&page=$current_page";
 }
 
-// TODO: vergelijk de api aanroep met de andere en vervang de oude --
 $result = fetch_from_api($url);
 if (!$result['success']) {
     die("Fout bij ophalen van API-data: {$result['error']}. Probeer het nog een keer.");
@@ -67,7 +66,6 @@ if (!$result['success']) {
 
 $data = $result['data'];
 $totalCount = count($data['data'] ?? []);
-// tot hier --
 
 $total_cards = $data['totalCount'] ?? 0;
 $total_pages = ceil($total_cards / $page_size);
