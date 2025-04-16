@@ -9,7 +9,7 @@ breid de zoekfunctie uit
 Stappenplan:
 
 stap 1 - uitlezen
-* breid de zoek zunctie uit / fix errors
+* spoort edge cases op en werk ze netjes weg
 * maak een webside voor als de api niet beschikbaar is
 
 
