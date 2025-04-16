@@ -1,4 +1,3 @@
-<?php $navbar_include = "unavailable";?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
