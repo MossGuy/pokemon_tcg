@@ -45,15 +45,16 @@ body {
 nav {
     background-color: var(--dark-blend);
     border-bottom: 2px solid var(--dark);
-    padding: 0.2rem 0;
 }
 
 nav a {
     transition: all 0.2s;
+    padding: 0 0.3rem;
 }
 
 nav a:hover {
-    color: var(--lightest);
+    /* color: var(--lightest); */
+    background-color: var(--lightest-blend);
 }
 
 nav form {
@@ -87,8 +88,9 @@ nav input:focus {
 }
 
 .links > a {
-    margin: auto;
-    padding: 1rem 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 /* main */
@@ -130,6 +132,7 @@ h2 {
 a {
     text-decoration: none;
     color: var(--dark);
+    margin: 0 0.3rem;
 }
 
 a:hover {
