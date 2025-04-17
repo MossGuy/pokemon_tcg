@@ -9,7 +9,7 @@ breid de zoekfunctie uit
 Stappenplan:
 
 stap 1 - uitlezen
-* spoort edge cases op en werk ze netjes weg
+* spoor edge cases op en werk ze netjes weg
 * maak een webside voor als de api niet beschikbaar is
 * maak de navbar inklapbaar
 
