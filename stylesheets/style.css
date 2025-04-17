@@ -196,6 +196,14 @@ button.active {
     color: var(--accent);
 }
 
+.accent_hover {
+    transition: all 0.2s;
+}
+
+.accent_hover:hover {
+    color: var(--accent);
+}
+
 .center {
     margin-left: auto;
     margin-right: auto;

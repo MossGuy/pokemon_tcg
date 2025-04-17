@@ -3,9 +3,8 @@ require_once "./php_functies/api_check.php";
 
 $url = "https://api.pokemontcg.io/v2/cards?q=name:sceptile&pageSize=1";
 $result = fetch_from_api($url);
+$navbar_include = "unavailable";
 ?>
-
-<?php $navbar_include = "unavailable"; ?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
