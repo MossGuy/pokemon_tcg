@@ -4,16 +4,14 @@ https://api.pokemontcg.io/v2/cards?q=id:sv7-111
 https://pokemontcg.guru/sets
 
 TODO:
-breid de zoekfunctie uit
 
 Stappenplan:
 
 stap 1 - uitlezen
 * spoor edge cases op en werk ze netjes weg
 * maak een webside voor als de api niet beschikbaar is
-* maak de navbar inklapbaar
 
 * maak een V-UNION collage in de kaart_zoeken.php (optioneel)
 
-stap 2 - een applicatie bouwen
+stap 2 - ???
 ...
