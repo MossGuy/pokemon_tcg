@@ -99,10 +99,6 @@ nav input:focus {
     align-items: center;
 }
 
-.nav_content form {
-    /* flex-grow: 1; */
-}
-
 .nav_toggle {
     display: none;
     font-size: 1.8rem;
