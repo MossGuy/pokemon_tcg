@@ -84,6 +84,7 @@ nav input:focus {
 }
 
 .links {
+    height: 100%;
     margin-left: auto;
 }
 
@@ -91,6 +92,26 @@ nav input:focus {
     height: 100%;
     display: flex;
     align-items: center;
+}
+
+.nav_content {
+    display: flex;
+    align-items: center;
+}
+
+.nav_content form {
+    /* flex-grow: 1; */
+}
+
+.nav_toggle {
+    display: none;
+    font-size: 1.8rem;
+    background: none;
+    border: none;
+    color: var(--lightest); /* of wat past bij je design */
+    cursor: pointer;
+    margin-left: auto;
+    
 }
 
 /* main */
@@ -178,6 +199,10 @@ button.active {
     display: none !important;
 }
 
+.logo {
+    min-width: 270px;
+}
+
 .set_title {
     color: var(--dark);
     font-size: 30px;
@@ -260,5 +285,46 @@ button.active {
     .container {
         max-width: 1300px;
         /* background-color: #D94B4B; */
+    }
+}
+
+@media (max-width: 768px) {
+    .nav_head {
+        width: 100%;
+    }
+    .nav_toggle {
+        margin-left: auto;
+        display: block;
+    }
+
+    .nav_content {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .nav_content.active {
+        display: flex;
+    }
+
+    .links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .links a {
+        padding: 0.5rem 0;
+    }
+
+    nav form, nav input {
+        width: 100%;
+        margin: 0;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
