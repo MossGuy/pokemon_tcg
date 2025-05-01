@@ -4,6 +4,7 @@ https://api.pokemontcg.io/v2/cards?q=id:sv7-111
 https://pokemontcg.guru/sets
 
 TODO:
+kaart.php responsive maken
 
 Stappenplan:
 
