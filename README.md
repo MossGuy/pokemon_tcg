@@ -1,1 +1,2 @@
-TODO: verwijder de api key voordat de website gehost word / repository public word
+Project status: grotendeels afgerond
+2 TODO items resterend
