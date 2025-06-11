@@ -3,16 +3,6 @@ https://api.pokemontcg.io/v2/sets?q=series:Scarlet%20&%20Violet
 https://api.pokemontcg.io/v2/cards?q=id:sv7-111
 https://pokemontcg.guru/sets
 
-TODO:
-kaart.php responsive maken
-
-Stappenplan:
-
-stap 1 - uitlezen
-* spoor edge cases op en werk ze netjes weg
+Optionele TODO items:
 * maak een webside voor als de api niet beschikbaar is
-
-* maak een V-UNION collage in de kaart_zoeken.php (optioneel)
-
-stap 2 - ???
-...
+* maak een V-UNION collage in de kaart_zoeken.php
