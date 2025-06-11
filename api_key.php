@@ -1,3 +1,5 @@
 <?PHP
-define("KEY", "&appid=e6937229-316f-496e-99b7-c829d8b2a6e7");
+// vul hier je api key in
+$api_key_raw = "";
+define("KEY", "&appid=$api_key_raw");
 ?>
