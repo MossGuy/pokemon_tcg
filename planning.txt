@@ -5,7 +5,6 @@ https://pokemontcg.guru/sets
 
 TODO:
 kaart.php responsive maken
-verwijder de api key voordat de website gehost word / repository public word
 
 Stappenplan:
 
