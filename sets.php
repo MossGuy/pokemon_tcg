@@ -1,4 +1,5 @@
 <?php
+if (!file_exists('api_key.php')) { copy('api_key.example.php', 'api_key.php');}
 require_once "./api_key.php";
 require_once "./php_functies/api_check.php";
 
